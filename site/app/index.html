@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>APP管理API - 腾讯工业云</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "APP\u7ba1\u7406API";
+    var mkdocs_page_input_path = "app.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 腾讯工业云</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">工业云账号系统</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">APP管理API</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#appapi">APP管理API</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#app">创建APP</a></li>
+        
+            <li><a class="toctree-l3" href="#app_1">获取App属性</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../oauth/">鉴权与统一登录</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../organization/">部门管理API</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../user/">员工管理API</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">腾讯工业云</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>APP管理API</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="appapi">APP管理API</h1>
+<h2 id="app">创建APP</h2>
+<p>https请求: https://api.cloud_industry.qcloud.com/cgi-bin/org/app?access_token=access_token</p>
+<p>https请求方式POST</p>
+<p>POST数据格式：JSON</p>
+<p>POST数据例子</p>
+<pre><code>{
+ &quot;name&quot;: &quot;app_boss&quot;,
+ &quot;openId&quot;: &quot;520EF0036FDFB9F9D3CED44DEC1CDEAB&quot;,
+ &quot;corpId&quot;: &quot;E38D8X73HX783GF6X3CED44DEC1CDEAB&quot;,
+}
+</code></pre>
+
+<p>返回说明</p>
+<pre><code>{
+    &quot;code&quot; : 0,
+    &quot;appId&quot; : &quot;4152759276&quot;,
+    &quot;appSecret&quot;: &quot;XzDD3h8NPFsIVVdxq&quot;
+}
+</code></pre>
+
+<h2 id="app_1">获取App属性</h2>
+<p>https请求: https://api.cloud_industry.qcloud.com/cgi-bin/org/app?appId=appId&amp;access_token=access_token</p>
+<p>https请求方式GET</p>
+<p>返回说明</p>
+<pre><code>{
+    &quot;code&quot; : 0,
+    &quot;appId&quot; : &quot;4152759276&quot;,
+    &quot;appSecret&quot;: &quot;XzDD3h8NPFsIVVdxq&quot;
+    &quot;name&quot;: &quot;app_boss&quot;,
+    &quot;appAuthority&quot;: [
+        {
+            &quot;authId&quot;: &quot;28938123&quot;,
+            &quot;name&quot;: &quot;购买&quot;
+        },
+        {
+            &quot;authId&quot;: &quot;28443122&quot;,
+            &quot;name&quot;: &quot;查看&quot;
+        },
+        {
+            &quot;authId&quot;: &quot;28977023&quot;,
+            &quot;name&quot;: &quot;取消购买&quot;
+        }
+    ]
+    &quot;userAuthority&quot;: [
+        {
+            &quot;authId&quot;: &quot;28938123&quot;,
+        },
+        {
+            &quot;authId&quot;: &quot;28443122&quot;,
+        }
+    ],
+    &quot;departmentAuthority&quot;: [
+        {
+            &quot;authId&quot;: &quot;28977023&quot;,
+        }
+    ],
+    &quot;userAttribute&quot;: [
+        {
+            &quot;id&quot;: &quot;name&quot;,
+            &quot;alias&quot;: &quot;姓名&quot;,
+            &quot;type&quot;: &quot;string&quot;
+        },
+        {
+            &quot;id&quot;: &quot;gender&quot;,
+            &quot;alias&quot;: &quot;性别&quot;,
+            &quot;type&quot;: &quot;number&quot;
+        },
+        {
+            &quot;id&quot;: &quot;authority&quot;,
+            &quot;alias&quot;: &quot;权限&quot;
+            &quot;type&quot;: &quot;string[]&quot;
+        },
+    ],
+    &quot;departmentAttribute&quot;: [
+        {
+            &quot;id&quot;: &quot;name&quot;,
+            &quot;alias&quot;: &quot;部门名称&quot;,
+            &quot;type&quot;: &quot;string&quot;
+        },
+        {
+            &quot;id&quot;: &quot;leader&quot;,
+            &quot;alias&quot;: &quot;部门leader&quot;,
+            &quot;type&quot;: &quot;string&quot;
+        },
+        {
+            &quot;id&quot;: &quot;authority&quot;,
+            &quot;alias&quot;: &quot;权限&quot;
+            &quot;type&quot;: &quot;string[]&quot;
+        },
+    ]
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../oauth/" class="btn btn-neutral float-right" title="鉴权与统一登录">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="工业云账号系统"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../oauth/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
