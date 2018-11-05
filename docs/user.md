@@ -1,37 +1,8 @@
 # 员工管理API
 
-## 创建员工
-
-https请求: https://api.cloud_industry.qcloud.com/cgi-bin/org/employees?access_token=access_token
-
-https请求方式POST
-
-POST数据格式：JSON
-
-POST数据例子
-
-```
-{
- "name": "api_8760",
- "gender": 1,
- "department": ["68", "45"],
- "authority": ["12", "13"]
-}
-```
-
-返回说明
-
-```
-{
-    "code" : 0,
-    "openId" : "520EF0036FDFB9F9D3CED44DEC1CDEAB",
-    "subcode": 0
-}
-```
-
 ## 获取员工信息
 
-https请求: https://api.cloud_industry.qcloud.com/cgi-bin/org/user?userId={userId}&access_token=access_token
+https请求: https://api.cloud_industry.qcloud.com/cgi-bin/org/user?userId={userId}&access_token={access_token}&appId={appId}
 
 https请求方式GET
 
@@ -40,9 +11,11 @@ https请求方式GET
 ```
 {
     "code" : 0,
-    "name": "api_8760",
-    "gender": 1,
-    "department": ["68", "45"],
-    "authority": ["12", "13"]
+    "name": "用户1", // 姓名
+    "gender": 1, // 性别
+    "tel": "18902387651", // 电话
+    "email": "eux@hotmail.com", // email
+    "corpId": "93eb78a3b7", // 用户所属企业的id
+    "role": "admin" // 用户角色：admin: 企业管理员，user: 企业普通用户
 }
 ```

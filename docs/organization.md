@@ -1,69 +1,45 @@
-# 部门管理API
+# 企业管理API
 
-## 获取组织架构列表
+## 获取企业信息
 
 https请求方式GET
 
-https请求方式: https://api.cloud_industry.qcloud.com/cgi-bin/org/departments?departmentId={id}&access_token=access_token
+https请求方式:
+https://api.cloud_industry.qcloud.com/cgi-bin/org/corp?corp={id}&access_token={access_token}
 
 返回说明
 ```
 {
    "code" : 0,
-   "employeesTotal" : 7,
-   "employees" : [ "userid1" , "userid2" , "userid3" ...]
-   "departmentsTotal" : 5,
-   "departments" : [ partmentid1 , partmentid2 , partmentid3]
+   "userCount": 5,
+   "users" : [ "userid1" , "userid2" , "userid3" ...],
+   "admin": "userid1"
 }
 ```
 
-> 备注： 获取组织架构api，组织架构不是一次拉取所有内容并返回，而是一层一层拉取。根部门departmentId===0
-
-## 创建部门 
+## 创建新应用
 
 https请求方式POST
 
-https请求方式: https://api.cloud_industry.qcloud.com/cgi-bin/org/departments?access_token=access_token
+https请求方式:
 
-POST数据格式：JSON
+https://api.cloud_industry.qcloud.com/cgi-bin/org/corp?access_token={access_token}
+
+请求JSON说明
 
 ```
 {
-   "name" : "engineering",
-   "parent" : 336,
-   "leader" : "08857FACD73DF75A40075054BEE06C11"
-   "authority": ["12", "13"]
+    "appId":  "782b67da98ce", // 应用的产品AppId
+    "corpId": "corpid1" // 企业CorpId
 }
 ```
-
-
-> 备注：父部门ID可通过获取组织架构列表获得。
 
 返回说明
 
 ```
 {
    "code" : 0,
-   "id" : 1
-}
-```
-
-## 获取部门信息
-
-https请求方式GET
-
-https请求方式: https://api.cloud_industry.qcloud.com/cgi-bin/org/departments?departmentId={id}&access_token=access_token
-
-
-
-返回说明
-
-```
-{
-   "code" : 0,
-   "name" : "采购部",
-   "parent" : 336,
-   "leader" : "08857FACD73DF75A40075054BEE06C11"
-   "authority": ["13", "12"]
+   "appId": "6ea90b347c0fd",
+   "appSecret": "23d8xh3yx93j7"
 }
 ```
