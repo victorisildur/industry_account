@@ -4,16 +4,21 @@
 
 https请求方式GET
 
-https请求方式:
-https://api.cloud_industry.qcloud.com/cgi-bin/org/corp?corp={id}&access_token={access_token}
+```
+https://api.cloud_industry.qcloud.com/cgi-bin/org/corp/{corpid1,corpid2}&access_token={access_token}
+```
 
 返回说明
 ```
 {
    "code" : 0,
-   "userCount": 5,
-   "users" : [ "userid1" , "userid2" , "userid3" ...],
-   "admin": [ "userid1", "userid2" ...]
+   "corps": [
+       {
+           "userCount": 5,
+           "users" : [ "userid1" , "userid2" , "userid3" ...],
+           "admin": [ "userid1", "userid2" ...]
+       }
+   ]
 }
 ```
 
@@ -21,8 +26,9 @@ https://api.cloud_industry.qcloud.com/cgi-bin/org/corp?corp={id}&access_token={a
 
 http(s)请求方式POST
 
-http(s)请求:
-http(s)://{CLIENT_SUBSCRIBE_URL}
+```
+CLIENT_SUBSCRIBE_URI
+```
 
 请求JSON包体:
 
@@ -40,12 +46,20 @@ http(s)://{CLIENT_SUBSCRIBE_URL}
 }
 ```
 
+返回说明：
+{
+    "code": 0
+}
+
+> 前置条件：应用为工业云内部应用，且已注册订阅URI
+
 ## 创建部门
 
 http(s)请求方式POST
 
-http(s)请求:
+```
 http(s)://api.industry.com/corp/department?access_token={access_token}
+```
 
 请求JSON包体：
 
@@ -53,7 +67,7 @@ http(s)://api.industry.com/corp/department?access_token={access_token}
 {
    "name" : "部门名称",
    "corpId": "corpId",
-   "parent" : 336, // 父部门deptId, 如创建根部门，不传入该参数
+   "parent" : "336", // 父部门deptId, 如创建根部门，不传入该参数
    "leader" : "userid" // 部门领导userId, userId必须在企业内, 一个部门只有一个leader,
    "employees": ["userid1", "userid2" ...]
 }
@@ -64,7 +78,7 @@ http(s)://api.industry.com/corp/department?access_token={access_token}
 ```
 {
     "code": 0,
-    "deptId": 336 // 创建出来部门的deptId
+    "deptId": "336" // 创建出来部门的deptId
 }
 ```
 
@@ -72,17 +86,24 @@ http(s)://api.industry.com/corp/department?access_token={access_token}
 
 http(s)请求方式GET
 
-http(s)请求:
-http(s)://api.industry.com/corp/department/{deptId}?access_token={access_token}
+```
+http(s)://api.industry.com/corp/department/{deptId1,deptid2}?access_token={access_token}
+```
 
 返回说明
 
 ```
 {
-   "name" : "部门名称",
-   "corpId": "corpId",
-   "parent" : 336, // 父部门deptId, 如创建根部门，不传入该参数
-   "leader" : "userid" // 部门领导userId, userId必须在企业内, 一个部门只有一个leader
+    "code": 0,
+    "depts": [
+        {
+            "deptId": "deptid1"
+            "name" : "部门名称",
+            "corpId": "corpId",
+            "parent" : "336", // 父部门deptId, 如创建根部门，不传入该参数
+            "leader" : "userid" // 部门领导userId, 一个部门只有一个leader
+        }
+    ]
 }
 ```
 
@@ -90,18 +111,30 @@ http(s)://api.industry.com/corp/department/{deptId}?access_token={access_token}
 
 http(s)请求方式GET
 
-http(s)请求:
-http(s)://api.industry.com/corp/department/{deptId}/members?access_token={access_token}
+```
+http(s)://api.industry.com/corp/department/{deptId1,deptId2...}/members?access_token={access_token}
+```
 
 返回说明
 
 ```
 {
    "code" : 0,
-   "employeesTotal" : 7,
-   "employees" : [ "userid1" , "userid2" , "userid3" ...]
-   "departmentsTotal" : 5,
-   "departments" : [ partmentid1 , partmentid2 , partmentid3]
+   "departments" [
+       {
+           "deptId": "deptid1",
+           "employeesTotal" : 7,
+           "employees" : [ "userid1" , "userid2" , "userid3" ...]
+           "departmentsTotal" : 5,
+           "departments" : [ "deptid1", "deptid2", "deptid3" ]
+       }, {
+           "deptId": "deptid2",
+           "employeesTotal" : 7,
+           "employees" : [ "userid1" , "userid2" , "userid3" ...]
+           "departmentsTotal" : 5,
+           "departments" : [ "deptid1", "deptid2", "deptid3" ]
+       }
+   ]
 }
 ```
 
@@ -110,8 +143,9 @@ http(s)://api.industry.com/corp/department/{deptId}/members?access_token={access
 ## 删除部门
 http(s)请求方式DELETE
 
-http(s)请求:
-http(s)://api.industry.com/corp/department/{deptId}?access_token={access_token}
+```
+http(s)://api.industry.com/corp/department/{deptId1,deptId2}?access_token={access_token}
+```
 
 返回说明
 ```
@@ -124,15 +158,18 @@ http(s)://api.industry.com/corp/department/{deptId}?access_token={access_token}
 
 http(s)请求方式PUT
 
-http(s)请求:
+```
 http(s)://api.industry.com/corp/department/{deptId}?access_token={access_token}
+```
+
 
 请求JSON包体：
+
 
 ```
 {
    "name" : "部门名称",
-   "parent" : 336, // 父部门deptId, 如创建根部门，不传入该参数
+   "parent" : "336", // 父部门deptId, 如创建根部门，不传入该参数
    "leader" : "userid" // 部门领导userId, userId必须在企业内, 一个部门只有一个leader
    "employees": ["userid1", "userid2" ...]
 }
@@ -144,3 +181,51 @@ http(s)://api.industry.com/corp/department/{deptId}?access_token={access_token}
     "code": 0,
 }
 ```
+
+
+## 订阅部门信息修改
+
+http(s)请求方式POST:
+
+```
+CLIENT_SUBSCRIBE_URI
+```
+请求JSON包体
+
+```
+{
+    "topic": "deptChange",
+    "changeList": [
+        {
+            "changeType": "add", // 新增一个部门
+            "deptId": "253",
+            "name" : "部门名称",
+            "parent" : "336", // 父部门deptId, 如创建根部门，不传入该参数
+            "leader" : "userid" // 部门领导userId, userId必须在企业内, 一个部门只有一个leader
+            "employees": ["userid1", "userid2" ...]
+        },
+        {
+            "changeType": "modify", // 修改一个部门
+            "deptId": "253",
+            "name" : "部门名称",
+            "parent" : "336", // 父部门deptId, 如创建根部门，不传入该参数
+            "leader" : "userid" // 部门领导userId, userId必须在企业内, 一个部门只有一个leader
+            "employees": ["userid1", "userid2" ...]
+        },
+        {
+            "changeType": "modify", // 删除一个部门
+            "deptId": "253",
+        }
+    ]
+}
+```
+
+返回说明
+
+```
+{
+    "code": 0
+}
+```
+
+> 前置条件：应用为工业云内部应用，且已注册订阅URI
