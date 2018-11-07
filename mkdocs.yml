@@ -7,7 +7,7 @@ nav:
   - 企业管理API: corp.md
   - 应用管理API: app.md
   - 单点登录: oauth.md
-  - 对接场景: "login.md"
+  - 对接场景: login.md
 extra:
   palette:
     primary: 'cyan'
