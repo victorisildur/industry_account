@@ -5,14 +5,15 @@
 ##  相关API
    
 ### app注册loginAppid
-用户在购买sass应用时，先申请单点登录loginAppid 使用获得的 loginAppid（即client_id）进行后续 [SSO登录 API](API/ouath.md)
+用户在购买sass应用时，先申请单点登录loginAppid 使用获得的 loginAppid（即client_id）进行后续 [SSO登录 API](oauth.md)
 
 ```
 REQUEST 参数:
 {
     UserId: "xxxx01", 
     CorpId: "yyyy01"
-}返回参数: 
+}
+返回参数: 
 {
     ret: 0,
     loginAppid: "zzzz@CorpId",
