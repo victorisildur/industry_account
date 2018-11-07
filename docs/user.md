@@ -11,11 +11,50 @@ https请求方式GET
 ```
 {
     "code" : 0,
+    "userId": "userid",
     "name": "用户1", // 姓名
     "gender": 1, // 性别
     "tel": "18902387651", // 电话
     "email": "eux@hotmail.com", // email
-    "corpId": "93eb78a3b7", // 用户所属企业的id
+    "corpId": "corpid", // 用户所属企业的id
     "role": "admin" // 用户角色：admin: 企业管理员，user: 企业普通用户
+}
+```
+
+
+## 订阅用户信息变更通知
+
+http(s)请求:
+http(s)://{CLIENT_SUBSCRIBE_URL}
+
+http(s)请求方式POST
+
+请求JSON包体
+
+```
+{
+    "topic": "userChange",
+    "changeList": [
+        {
+            "changeType": "add",
+            "userId": "userid",
+            "name": "name",
+            "gender": 1,
+            "tel": "tel",
+            "email": "email"
+            "corpId": "corpid",
+            "role": "user"
+        },
+        {
+            "changeType": "modify",
+            "userId": "userid",
+            "name": "name",
+            "gender": 1,
+            "tel": "tel",
+            "email": "email"
+            "corpId": "corpid",
+            "role": "user"
+        }
+    ]
 }
 ```

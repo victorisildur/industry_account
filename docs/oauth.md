@@ -1,20 +1,15 @@
 # 鉴权与统一登录
 
-## 鉴权
+## 统一单点登录
 
-请求示例（请使用https协议）：
-https://api.qidian.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET
+1. 统一登录页面url: https://cloud.industry.com/oauth/login?client_id={id}&redirect_uri={client_redirect_uri}&response_type=code
 
-请求参数说明:
+2. 统一登录页判断client_redirect_uri是否在应用注册的重定向域名下，如果满足域名约束且用户输入正确的用户名密码后，统一登录页重定向到地址{client_redirect_uri}?code={code}
 
-* grant_type：获取access_token填写client_credential,
-* appid：第三方用户唯一凭证,
-* secret：第三方用户唯一凭证密钥，即appsecret
+3. 应用接入方在{client_redirect_uri}根据uri里的code参数请求https://cloud.industry.com/oauth/access_token接口，获取access_token
 
-返回参数说明:
+4. 应用根据access_token，即可调用工业云账号系统的全部API
 
-* access_token：API接口调用凭证
-* expires_in：过期时
 
 > 注意：
 >
@@ -24,10 +19,12 @@ https://api.qidian.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID
 > 
 > access_token的有效期目前为2个小时，需定时刷新。
 
-## 统一登录接入
+## API鉴权
 
-统一登录url: https://cloud.industry.com/login?appId={id}
+调用API前，必须引导用户完成"统一单点登录"的流程，使应用拿到access_token。
 
-登录后会根据oauth2授权码模式重定向，返回code
+所有API都要求传入access_token做为调用凭据。详见其他API文档:
 
-App接入方再根据code请求access_token
+* [用户管理API](user.md)
+* [企业管理API](corp.md)
+* [应用管理API](app.md)
