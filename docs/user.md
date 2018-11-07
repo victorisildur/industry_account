@@ -16,18 +16,27 @@ https请求方式GET
     "gender": 1, // 性别
     "tel": "18902387651", // 电话
     "email": "eux@hotmail.com", // email
-    "corpId": "corpid", // 用户所属企业的id
-    "role": "admin" // 用户角色：admin: 企业管理员，user: 企业普通用户
+    "roles": [
+        {
+            "corpId": "corpid1", // 用户所属企业的id
+            "role": "admin" // 用户角色：admin: 企业管理员，user: 企业普通用户
+        },
+        {
+            "corpId": "corpid2", // 用户所属企业的id
+            "role": "user" // 用户角色：admin: 企业管理员，user: 企业普通用户
+        }
+    ]
 }
 ```
 
 
 ## 订阅用户信息变更通知
 
-http(s)请求:
-http(s)://{CLIENT_SUBSCRIBE_URL}
+http(s)请求方式POST:
 
-http(s)请求方式POST
+```
+http(s)://{CLIENT_SUBSCRIBE_URL}
+```
 
 请求JSON包体
 
@@ -36,25 +45,36 @@ http(s)请求方式POST
     "topic": "userChange",
     "changeList": [
         {
-            "changeType": "add",
+            "changeType": "add", // 新增一个user
             "userId": "userid",
             "name": "name",
             "gender": 1,
             "tel": "tel",
             "email": "email"
-            "corpId": "corpid",
-            "role": "user"
+            "roles": [
+                {
+                    "corpId": "corpid",
+                    "role": "user"
+                }
+            ]
         },
         {
-            "changeType": "modify",
+            "changeType": "modify", // 修改一个user
             "userId": "userid",
             "name": "name",
             "gender": 1,
             "tel": "tel",
             "email": "email"
-            "corpId": "corpid",
-            "role": "user"
-        }
+            "roles": [
+                {
+                    "corpId": "corpid",
+                    "role": "user"
+                }
+            ]
+        },
+        {
+            "changeType": "delete", //删除一个user
+            "userId": "userid",
     ]
 }
 ```
