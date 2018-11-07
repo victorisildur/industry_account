@@ -21,6 +21,8 @@ https://api.cloud_industry.qcloud.com/cgi-bin/org/user/{userid1,userid2...}&acce
             "gender": 1, // 性别
             "tel": "18902387651", // 电话
             "email": "eux@hotmail.com", // email
+            "id": "id", // 身份证号,
+            "state": 0, // 0: 未实名认证，1： 已实名认证
             "roles": [
                 {
                     "corpId": "corpid1", // 用户所属企业的id
@@ -58,6 +60,8 @@ CLIENT_SUBSCRIBE_URI
             "gender": 1,
             "tel": "tel",
             "email": "email"
+            "id": "id", // 身份证号,
+            "state": 0, // 0: 未实名认证，1： 已实名认证
             "roles": [
                 {
                     "corpId": "corpid",
@@ -72,6 +76,8 @@ CLIENT_SUBSCRIBE_URI
             "gender": 1,
             "tel": "tel",
             "email": "email"
+            "id": "id", // 身份证号,
+            "state": 0, // 0: 未实名认证，1： 已实名认证
             "roles": [
                 {
                     "corpId": "corpid",

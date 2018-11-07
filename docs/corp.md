@@ -13,11 +13,18 @@ https://api.cloud_industry.qcloud.com/cgi-bin/org/corp/{corpid1,corpid2}&access_
 {
    "code" : 0,
    "corps": [
-       {
-           "userCount": 5,
-           "users" : [ "userid1" , "userid2" , "userid3" ...],
-           "admin": [ "userid1", "userid2" ...]
-       }
+        {
+            "name": "企业名称",
+            "addr": "地址",
+            "contract": {
+                "name": "张三",
+                "tel": "123123"
+            },
+            "userCount": 5,
+            "users" : [ "userid1" , "userid2" , "userid3" ...],
+            "adminCount": 3,
+            "admin": [ "userid1", "userid2" ...]
+        }
    ]
 }
 ```
@@ -41,6 +48,12 @@ CLIENT_SUBSCRIBE_URI
             "userCount": 5,
             "users" : [ "userid1" , "userid2" , "userid3" ...],
             "admin": [ "userid1", "userid2" ...]
+            "name": "企业名称",
+            "addr": "地址",
+            "contract": {
+                "name": "张三",
+                "tel": "123123"
+            },
         }
     ]
 }

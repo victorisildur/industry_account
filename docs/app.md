@@ -27,6 +27,30 @@ https://api.cloud_industry.qcloud.com/cgi/app?access_token={access_token}
 }
 ```
 
+## 删除单点登录应用
+
+https请求方式DELETE
+
+```
+https://api.cloud_industry.qcloud.com/cgi/app?access_token={access_token}
+```
+
+请求JSON说明
+
+```
+{
+    "loginAppId": "appid1" 
+}
+```
+
+返回说明
+
+```
+{
+   "code" : 0
+}
+```
+
 
 ## 开通/关闭用户单点登录应用的权限
 
