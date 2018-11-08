@@ -1,30 +1,34 @@
 # 应用场景
-
-
-
-##  相关API
    
+
+###  平台业务模块对接帐号系统，实现单点登录
+ - 平台业务模块对接帐号系统，约定信息
+ - 平台业务侧获取用户,企业信息
+
+###  业务模块的应用，实现单点登录
+
+ - 为应用注册loginAppid ，和应用管理员
+ - 应用保存loginAppid，
+ 
+###  平台业务模块如何管理应用
+  - 管理应用下的用户权限（ ASSIGN，UNASSIGN）
+  - 删除应用(DELETE)
+
+###  平台业务如何管理部门
+ 
+ - 创建部门
+ - 删除部门
+ 
+
+
+
+
+
+  
+
 ###  应用注册入口 申请注册loginAppid 
-用户在购买sass应用时，boss应为应用先申请单点登录loginAppid 使用获得的 loginAppid（即client_id）进行后续 [单点登录](oauth.md)
+用户在购买sass应用时，boss应为应用先 [申请单点登录loginAppid](app.md) 应用使用获得的 loginAppid（即client_id）进行后续 [单点登录](oauth.md)
 
-```
-REQUEST 参数:
-{
-    UserId: "xxxx01", 
-    CorpId: "yyyy01"
-}
-返回参数: 
-{
-    ret: 0,
-    loginAppid: "zzzz@CorpId",
-    secret:"w120910271201_218218**212%%$#^",
-    viradmini:"xxx_1212120"
-}   
-```
-
-
-
-### 注册单点登录loginAppid
 
 
 
