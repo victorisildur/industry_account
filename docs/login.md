@@ -4,8 +4,8 @@
 
 ##  相关API
    
-### app注册loginAppid
-用户在购买sass应用时，先申请单点登录loginAppid 使用获得的 loginAppid（即client_id）进行后续 [SSO登录 API](oauth.md)
+###  应用注册入口 申请注册loginAppid 
+用户在购买sass应用时，boss应为应用先申请单点登录loginAppid 使用获得的 loginAppid（即client_id）进行后续 [单点登录](oauth.md)
 
 ```
 REQUEST 参数:
