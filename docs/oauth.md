@@ -21,12 +21,12 @@ access_token的有效期目前为2个小时，需定时刷新。
 ## 统一单点登录前置条件
 
 要接入统一单点登录的应用，首先申请应用client_appid(又称login_appid)和appsecret，并设置授权回调域名(client_redirect_uri)。
-工业云内部应用应前往[应用注册入口](https://qcloud.com)申请注册。
+平台内应用应前往[应用注册入口](https://qcloud.com)申请注册，账号系统未提供注册页面前，可以在对接阶段直接和开发人员沟通处理。
 
-接入工业云的第三方应用应前往[工业云Boss](https://boss.com)，由Boss系统代为申请。
+接入账号系统的第三方应用由负责具体对接的平台内应用（如：工业云BOSS系统）代为申请，申请接口可参考[应用管理API](app.md)。
 
 业务场景:
-用户在网页授权页同意授权给应用后，工业云会将授权数据传给一个企业指定的回调页面（client_redirect_uri），回调页面需在此域名下，以确保安全可靠。
+用户在网页授权页同意授权给应用后，账号系统会将授权数据传给一个应用指定的回调页面（client_redirect_uri），回调页面需在此域名下，以确保安全可靠。
 
 注意事项
 
@@ -41,7 +41,7 @@ access_token的有效期目前为2个小时，需定时刷新。
 但"http://pay.qq.com" 、 "http://music.qq.com" 、 "http://qq.com"无法进行授权
 
 
-对于工业云内部应用，还可设置client_appid相关联的订阅URI(client_subscibe_uri)，用于接收用户信息变更通知、企业信息变更通知、部门信息变更通知（可选）。相关订阅通知接口详见
+对于平台内应用，还可设置client_appid相关联的订阅URI(client_subscibe_uri)，用于接收用户信息变更通知、企业信息变更通知、部门信息变更通知（可选）。相关订阅通知接口详见
 
 * [用户管理API](user.md)
 * [企业管理API](corp.md)
