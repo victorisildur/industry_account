@@ -26,20 +26,24 @@ extra_javascript:
   - js/umlconvert.js
 markdown_extensions:
   # - pymdownx.superfences
-  # - toc
-  # - smarty
-  # - pymdownx.arithmatex
-  # - pymdownx.betterem:
-  #     smart_enable: all
-  # - pymdownx.caret
-  # - pymdownx.critic
-  # - pymdownx.details
-  # - pymdownx.emoji:
-  #     emoji_generator: !!python/name:pymdownx.emoji.to_svg
-  # - pymdownx.inlinehilite
-  # - pymdownx.magiclink
-  # - pymdownx.mark
-  # - pymdownx.smartsymbols
+  
+  - toc:
+        permalink: True
+        baselevel: 2
+        separator: "_"
+  - smarty
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
   - pymdownx.superfences:
       custom_fences: [
             {name: flow, class: uml-flowchart}
