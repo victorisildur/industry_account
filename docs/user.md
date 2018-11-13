@@ -1,44 +1,37 @@
 #用户管理API
 [TOC]
-##获取用户信息
 
-### 4.1接口描述
+
+
+##获取用户详情
+
+### 1.1接口描述
 接口请求域名：api.cloud_industry.qcloud.com 。
 
+通过 CorpId+userid，可以在一个企业内唯一确定一个用户，通过免登授权可以获取到当前用户的userid，再通过userid调用本接口，获取用户的详情
 
-
-默认接口请求频率限制：1000次/每秒。
-
-注意事项：
-
-https请求方式POST
+https请求方式GET
 
 ```
-https://api.cloud_industry.qcloud.com/cgi-bin/user
+https://api.cloud_industry.qcloud.com/cgi-bin/user/access_token=ACCESS_TOKEN
 ```
-### 4.2传入参数
+### 1.2传入参数
 
 
 | 参数名称 | 必选 | 类型 | 描述 |
 | --- | --- | --- | --- |
-|Action  | 是 | String |公共参数，本接口取值：getUserInfo
-  |
-| sessionid	 | 是 | String | 公共参数 一次请求对应一个SessionId，会原样返回，建议传入类似于uuid的字符串防止重复 |
-| access_token | 是 | String | 公共参数 |
-| appid |是| String |公共参数 第三方应用实例，唯一标识 |
-| userid | 是 |String  | 执行操作的用户身份唯一标识 |
-| corpid | 否 |String  | 查询指定企业下该用户的信息 |
+| access_token | 是 | String | 公共参数，调用接口凭证 |
 | query_users|  是| Array  | 被查询的用户userid列表 |
-   
-   
-   
-   
-### 4.3返回说明
+ 
+### 1.3返回说明
 
-```
+```   1        10
+limit start， offset
+      
 {
     "code" : 0,
-    "users": [
+    "total" :1000,
+    "userlist__": [
         {
             "userId": "userid",
             "name": "用户1", // 姓名
@@ -47,6 +40,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/user
             "email": "eux@hotmail.com", // email
             "id": "id", // 身份证号,
             "state": 0, // 0: 未实名认证，1： 已实名认证
+              ...
             "roles": [
                 {
                     "corpId": "corpid1", // 用户所属企业的id
@@ -61,6 +55,8 @@ https://api.cloud_industry.qcloud.com/cgi-bin/user
     ]
 }
 ```
+
+
 
 
 
