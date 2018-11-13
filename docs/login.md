@@ -9,113 +9,16 @@
     1. 平台业务模块为第三方应用注册`login_appid`(详见[创建单点登录应用API](app.md))
     2. 应用保存loginAppid，接入单点登录页面，以标准oauth2授权码模式取得令牌(详见[单点登录流程](login.md))，然后使用令牌调用API，获取用户，企业等信息(详见API文档)
 * **平台业务模块管理第三方应用**
-    1. 向第三方应用加入、移出用户(原boss系统ASSIGN，UNASSIGN接口)，详见[开通/关闭用户单点登录应用的权限](app.md)
-    2. 删除第三方应用(原boss系统DELETE接口)，详见[删除单点登录应用](app.md)
+    1. 向第三方应用加入、移出用户(原boss系统ASSIGN，UNASSIGN接口)，详见[开通/关闭用户单点登录应用的权限API](app.md)
+    2. 删除第三方应用(原boss系统DELETE接口)，详见[删除单点登录应用API](app.md)
 * **平台业务模块管理企业部门树（待定）**
     - 创建部门
     - 删除部门
 
 
-# 使用场景流程说明
+# 应用场景详细说明
 
-## 管理员购买app实例开通服务流程图
-
-```sequence
-participant 用户
-participant 工业云平台
-participant boss
-participant app实例
-
-用户->boss: 购买某应用app  
-
-boss-> 工业云平台: 购买成功后申请注册全局唯一产品实例
-工业云平台->boss: 返回login_appid， secret \n 和虚拟企业管理员userid
-boss->app实例:寄云在原open接口新增传入字段 \n login_appid，secret
-
-```
-
-##管理员删除app实例流程
-
-```sequence
-participant 用户
-participant 工业云平台
-participant boss
-participant app实例
-用户->boss:管理员登录
-boss->app实例:DELETE删除软件服务
-app实例->boss: 成功
-boss->工业云平台:同步通知工业云平台，传入参数\n type，openid，login_appid
-```
-
-##管理员创建部门流程
-
-```sequence
-participant 用户
-participant 工业云平台
-participant boss
-participant app实例
-用户->boss:管理员登录
-boss->app实例:DEPT_CREATE创建部门
-app实例->boss: 成功
-boss->工业云平台:同步通知工业云平台，传入参数\n type，openid，login_appid,parameters
-```
-
-##管理员删除部门流程
-
-```sequence
-participant 用户
-participant 工业云平台
-participant boss
-participant app实例
-用户->boss:管理员登录
-boss->app实例:DEPT_REMOVE删除部门
-app实例->boss: 成功
-boss->工业云平台:同步通知工业云平台，传入参数\n type，openid，login_appid,parameters
-```
-
-##管理员创建用户流程
-
-```sequence
-participant 用户
-participant 工业云平台
-participant boss
-participant app实例
-用户->boss:管理员登录
-boss->app实例:USER_ASSIGN创建用户
-app实例->boss: 成功
-boss->工业云平台:同步通知工业云平台，传入参数\n type，openid，login_appid,parameters
-```
-
-##管理员删除用户流程
-
-```sequence
-participant 用户
-participant 工业云平台
-participant boss
-participant app实例
-用户->boss:管理员登录
-boss->app实例:USER_UNASSIGN删除部门
-app实例->boss: 成功
-boss->工业云平台:同步通知工业云平台，传入参数\n type，openid，login_appid,parameters
-
-```
-
-##用户sso登录app实例授权流程
-```sequence
-participant 用户
-participant 工业云平台
-participant boss
-participant app实例
-用户->boss:用户在boss页面点击登录app实例
-boss->工业云平台:申请单点登录 \n 传入参数login_appid，secret
-工业云平台-->app实例: oauth2.0鉴权授信流程
-用户->app实例:用户直接在app实例上发起登录
-app实例->工业云平台: 申请单点登录 传入参数 \n工业云平台分给app实例的  login_appid+secret 
-工业云平台-->app实例:oauth2.0鉴权授信流程
-```
-
-
-## oauth2 单点登录流程
+## 平台业务模块下的第三方应用，实现单点登录
 
 ```sequence
 participant 用户
@@ -130,8 +33,17 @@ participant 工业云平台
 工业云平台-->第三方应用: 5. access_token
 ```
 
+```
+说明： 平台业务模块实现单点登录，与第三方应用实现单点登录流程类似。
 
-# 单点登录流程详解
+区别在于平台业务模块的login_appid是内部对接时申请的.
+
+第三方应用的login_appid是企业管理员在boss系统购买第三方应用时，由boss调用平台[创建单点登录应用API]创建的.
+
+第三方应用login_appid生成流程详见下文[企业管理员在boss上购买第三方应用]部分
+```
+
+**流程说明**
 
 1. 用户访问第三方应用，后者将前者导向工业云平台单点登录页
 2. 用户输入自己在工业云平台注册的用户名密码，点击登录请求授权，工业云平台将用户重定向到login_appid事先指定的重定向地址(redirect_uri)，同时附上授权码。
@@ -139,8 +51,7 @@ participant 工业云平台
 4. 第三方应用在重定向地址收到授权码，附重定向地址，向认证服务器申请令牌。这一步是在第三方应用的后台完成的，对用户不可见。
 5. 认证服务器核对了授权码和重定向地址，确认无误后，返回令牌(access_token)等信息
 
-
-## 第1步详解
+**第1步详解**
 
 用户在第三方应用上发起登录，第三方应用将用户导向工业云平台单点登录页
 
@@ -149,23 +60,20 @@ https://cloud_industry.com/login?login_appid={login_appid}&redirect_uri={redirec
 ```
 
 
-## 第2步详解
+**第2步详解**
 
-用户在工业云平台单点登录页面输入在工业云平台注册的用户名、密码，点击登录
-
-
-## 第3步详解
+用户在工业云平台单点登录页面输入在工业云平台注册的用户名、密码，点击登录。
 
 工业云平台验证用户名密码，如通过，返回302到第三方应用事先指定的重定向地址（redirection URI），同时附上一个授权码。
 
 返回Headers:
 
 ```
-HTTP/1.1 302 Found
+Status Code: 302
 Location: https://client.example.com/cb?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz
 ```
 
-## 第4步详解
+**第3、4步详解**
 
 用户重定向到第三方应用redirect_uri，第三方应用收到授权码，附上早先的”重定向URI”，向认证服务器申请令牌。
 
@@ -188,7 +96,7 @@ https://cloud_industry.com/oauth/token?grant_type=authorization_code&code={code}
 | state | 第三方应用随机生成，工业云平台会原样返回，用于防CSRF攻击 |
 
 
-## 第5步详解
+**第5步详解**
 
 认证服务器核对了授权码和”重定向URI”，确认无误后，向app发送访问令牌（access token）和更新令牌（refresh token）。
 
@@ -214,3 +122,66 @@ https://cloud_industry.com/oauth/token?grant_type=authorization_code&code={code}
 | refresh_token | 表示更新令牌，用来获取下一次的访问令牌，可选项 |
 | state | 第三方应用随机生成，工业云平台会原样返回，用于防CSRF攻击 |
 | user_id | 用户id |
+
+
+## 企业管理员在boss上购买第三方应用
+
+```sequence
+participant 用户
+participant boss
+participant 工业云平台
+participant 第三方应用
+
+用户->boss: 购买第三方应用
+boss->工业云平台: 申请创建单点登录应用API
+工业云平台-->boss: login_appid, login_appsecret \n virtual_admin_userid
+boss->第三方应用: boss在原open接口多传 \n login_appid, login_appsecret, admin_userid
+第三方应用-->boss: 成功
+```
+
+> 前置条件：boss与第三方应用约定，保存第三方应用的`name`, `redirect_fqdn`, `logo`，以供boss调用[申请创建单点登录应用API](app.md)时使用
+
+## 企业管理员在boss上删除第三方应用
+
+```sequence
+participant 用户
+participant boss
+participant 第三方应用
+participant 工业云平台
+
+用户->boss: 管理员登录
+boss->第三方应用: DELETE删除软件服务
+第三方应用-->boss: 成功
+boss->工业云平台: 删除单点登录应用API
+工业云平台-->boss: 成功
+```
+
+## 企业管理员向第三方应用添加用户
+
+```sequence
+participant 用户
+participant boss
+participant 第三方应用
+participant 工业云平台
+
+用户->boss:管理员登录
+boss->第三方应用: USER_ASSIGN创建用户
+第三方应用-->boss: 成功
+boss->工业云平台: 开通用户单点登录应用权限API
+工业云平台-->boss: 成功
+```
+
+## 企业管理员从第三方应用移出用户
+
+```sequence
+participant 用户
+participant boss
+participant 第三方应用
+participant 工业云平台
+
+用户->boss: 管理员登录
+boss->第三方应用: USER_UNASSIGN删除部门
+第三方应用-->boss: 成功
+boss->工业云平台: 关闭用户单点登录应用权限API 
+工业云平台-->boss: 成功
+```
