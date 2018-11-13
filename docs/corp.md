@@ -1,13 +1,5 @@
 # 企业管理API
 [TOC]
-## 创建企业
-### 1.1接口描述
-### 1.2传入参数
-### 1.3返回说明
-## 企业信息审核
-### 2.1接口描述
-### 2.2传入参数
-### 3.3返回说明
 
 
 ## 获取企业信息
@@ -15,7 +7,7 @@
 https请求方式GET
 
 ```
-https://api.cloud_industry.qcloud.com/cgi-bin/org/corp/{corpid1,corpid2}&access_token={access_token}
+https://api.cloud_industry.qcloud.com/cgi-bin/corp
 ```
 
 返回说明
