@@ -41,11 +41,11 @@ https://api.cloud_industry.qcloud.com/cgi-bin/user/access_token=ACCESS_TOKEN
               ...
             "roles": [
                 {
-                    "corpid": "corpid1", // 用户所属企业的id
+                    "corp_id": "corpid1", // 用户所属企业的id
                     "role": "admin" // 用户角色：admin: 企业管理员，user: 企业普通用户
                 },
                 {
-                    "corpid": "corpid2", // 用户所属企业的id
+                    "corp_id": "corpid2", // 用户所属企业的id
                     "role": "user" // 用户角色：admin: 企业管理员，user: 企业普通用户
                 }
             ]
@@ -83,7 +83,7 @@ CLIENT_SUBSCRIBE_URI
             "state": 0, // 0: 未实名认证，1： 已实名认证
             "roles": [
                 {
-                    "corpId": "corpid",
+                    "corp_id": "corpid",
                     "role": "user"
                 }
             ]
