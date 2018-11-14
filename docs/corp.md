@@ -28,7 +28,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp?access_token=ACCESS_TOKEN
    "errmsg": "ok",
    "corps": [
         {
-            "corpid":"corpid1"
+            "corp_id":"corpid1"
             "name": "企业名称",
             "addr": "地址",
             "contract": {
@@ -70,7 +70,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/userids?access_token=ACCESS_T
     "has_more": false,
     "userlist": [
         {
-            "userid":"zhangpkay",
+            "user_id":"zhangpkay",
             "role":"admin"
         }
     ]
@@ -84,7 +84,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/userids?access_token=ACCESS_T
 | errmsg| 	对返回码的文本描述内容
 | has_more| 	在分页查询时返回，代表是否还有下一页更多数据
 | userlist| 	用户列表|
-| userid| 	用户唯一标识ID（不可修改）| 
+| user_id| 	用户唯一标识ID（不可修改）| 
 | role	| 用户角色| 
 
 ## 获取企业下用户详情列表
@@ -101,7 +101,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/users?access_token=ACCESS_TOK
 | 参数名称 | 必选 | 类型 | 描述 |
 | --- | --- | --- | --- |
 | access_token | 是 | String | 公共参数，调用接口凭证 |
-| corpid | 否 |String  | 企业唯一标识 |
+| corp_id | 否 |String  | 企业唯一标识 |
 | offset|否|long|支持分页查询，与size参数同时设置时才生效，此参数代表偏移量|
 | size |否|int|支持分页查询，与offset参数同时设置时才生效，此参数代表分页大小，最大100，排序说明-代表按照用户关联到企业账号时间升序
 
@@ -115,7 +115,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/users?access_token=ACCESS_TOK
     "has_more": false,
     "userlist":[
         {
-            "userid": "zhangpkay",
+            "user_id": "zhangpkay",
             "mobile": "13122222222",
             "tel" : "010-123333",
             "id" : "3625121991112792xx"
@@ -148,7 +148,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/users?access_token=ACCESS_TOK
 |errmsg|对返回码的文本描述内容|
 |has_more|在分页查询时返回，代表是否还有下一页更多数据|
 |userlist|成员列表|
-|userid|用户唯一标识ID（不可修改）|
+|user_id|用户唯一标识ID（不可修改）|
 |id|用户身份证号码|
 |is_admin|是否是企业的管理员,true表示是false表示不是|
 |name|用户名称|
@@ -178,7 +178,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/admin_ids?access_token=ACCESS
 | 参数名称 | 必选 | 类型 | 描述 |
 | --- | --- | --- | --- |
 | access_token | 是 | String | 公共参数，调用接口凭证 |
-| corpid | 否 |String  | 企业唯一标识 |
+| corp_id | 否 |String  | 企业唯一标识 |
 
 
 ### 4.3返回结果
@@ -187,7 +187,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/admin_ids?access_token=ACCESS
 {
     "errcode": 0,
     "errmsg": "ok",
-    "adminlist":[
+    "admins":[
         "userid1",
         "userid2",
          ...
@@ -216,10 +216,10 @@ CLIENT_SUBSCRIBE_URI
     "topic": "corpChange",
     "changelist": [
         {
-            "corpid": "corpid",
+            "corp_id": "corpid",
             "user_count": 5,
             "users" : [ "userid1" , "userid2" , "userid3" ...],
-            "admin": [ "userid1", "userid2" ...]
+            "admins": [ "userid1", "userid2" ...]
             "name": "企业名称",
             "addr": "地址",
             "contract": {
