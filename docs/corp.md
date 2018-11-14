@@ -8,7 +8,7 @@
 https请求方式GET
 
 ```
-https://api.cloud_industry.qcloud.com/cgi-bin/corp?access_token=ACCESS_TOKEN
+https://api.cloud_industry.qcloud.com/cgi-bin/corps?access_token=ACCESS_TOKEN&corpids=corpid1,corpid2
 ```
 
 ### 1.2传入参数
@@ -49,14 +49,14 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp?access_token=ACCESS_TOKEN
 * 请求地址：
 
 ```
-https://api.cloud_industry.qcloud.com/cgi-bin/corp/userids?access_token=ACCESS_TOKEN
+https://api.cloud_industry.qcloud.com/cgi-bin/corp/userids?access_token=ACCESS_TOKEN&corp_id=corpid1&offset=0&size=100
 
 ```
 ### 2.2传入参数
 | 参数名称 | 必选 | 类型 | 描述 |
 | --- | --- | --- | --- |
 | access_token | 是 | String | 公共参数，调用接口凭证 |
-| corpid | 否 |String  | 企业唯一标识 |
+| corp_id | 否 |String  | 企业唯一标识 |
 | offset|否|long|支持分页查询，与size参数同时设置时才生效，此参数代表偏移量|
 | size |否|int|支持分页查询，与offset参数同时设置时才生效，此参数代表分页大小，最大100,排序说明-代表按照用户关联到企业账号时间升序
 
@@ -94,7 +94,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/userids?access_token=ACCESS_T
 请求方式：GET（HTTPS）
 请求地址：
 ```
-https://api.cloud_industry.qcloud.com/cgi-bin/corp/users?access_token=ACCESS_TOKEN&corpid=1
+https://api.cloud_industry.qcloud.com/cgi-bin/corp/users?access_token=ACCESS_TOKEN&corp_id=corpid1&offset=0&size=100
 ```
 ### 3.2传入参数
 
@@ -170,7 +170,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/users?access_token=ACCESS_TOK
 * 请求地址：
 
 ```
-https://api.cloud_industry.qcloud.com/cgi-bin/corp/admin_ids?access_token=ACCESS_TOKEN&corpid=1
+https://api.cloud_industry.qcloud.com/cgi-bin/corp/admin_ids?access_token=ACCESS_TOKEN&corp_id=corpid1
 
 ```
 ### 4.2传入参数
