@@ -49,7 +49,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp?access_token=ACCESS_TOKEN
 * 请求地址：
 
 ```
-https://api.cloud_industry.qcloud.com/cgi-bin/corp/useridBypage?access_token=ACCESS_TOKEN
+https://api.cloud_industry.qcloud.com/cgi-bin/corp/userids?access_token=ACCESS_TOKEN
 
 ```
 ### 2.2传入参数
@@ -67,7 +67,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/useridBypage?access_token=ACC
 {
     "errcode": 0,
     "errmsg": "ok",
-    "hasMore": false,
+    "has_more": false,
     "userlist": [
         {
             "userid":"zhangpkay",
@@ -82,7 +82,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/useridBypage?access_token=ACC
 | 参数| 	说明| 
 | errcode	| 返回码
 | errmsg| 	对返回码的文本描述内容
-| hasMore| 	在分页查询时返回，代表是否还有下一页更多数据
+| has_more| 	在分页查询时返回，代表是否还有下一页更多数据
 | userlist| 	用户列表|
 | userid| 	用户唯一标识ID（不可修改）| 
 | role	| 用户角色| 
@@ -94,7 +94,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/useridBypage?access_token=ACC
 请求方式：GET（HTTPS）
 请求地址：
 ```
-https://api.cloud_industry.qcloud.com/cgi-bin/corp/userBypage?access_token=ACCESS_TOKEN&corpid=1
+https://api.cloud_industry.qcloud.com/cgi-bin/corp/users?access_token=ACCESS_TOKEN&corpid=1
 ```
 ### 3.2传入参数
 
@@ -112,7 +112,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/userBypage?access_token=ACCES
 {
     "errcode": 0,
     "errmsg": "ok",
-    "hasMore": false,
+    "has_more": false,
     "userlist":[
         {
             "userid": "zhangpkay",
@@ -120,7 +120,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/userBypage?access_token=ACCES
             "tel" : "010-123333",
             "id" : "3625121991112792xx"
             "remark" : "",
-            "isAdmin": true,
+            "is_admin": true,
             "name": "张凯",
             "active": true,
             "email": "zhangpkay@tencent-inc.com",
@@ -128,7 +128,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/userBypage?access_token=ACCES
             "extattr": {
                     "爱好":"旅游",
                     "年龄":"24",
-                    "hiredDate": 1520265600000,
+                    "hired_date": 1520265600000,
                     "workPlace" :"",
                     "jobnumber": "111111",
                     "position": "工程师",
@@ -146,10 +146,11 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/userBypage?access_token=ACCES
 | --- | --- |
 |errcode|返回码|
 |errmsg|对返回码的文本描述内容|
-|hasMore|在分页查询时返回，代表是否还有下一页更多数据|
+|has_more|在分页查询时返回，代表是否还有下一页更多数据|
 |userlist|成员列表|
 |userid|用户唯一标识ID（不可修改）|
-|isAdmin|是否是企业的管理员,true表示是false表示不是|
+|id|用户身份证号码|
+|is_admin|是否是企业的管理员,true表示是false表示不是|
 |name|用户名称|
 |remark|用户别名|
 |active|表示该用户是否激活了工业云平台账户|
@@ -157,7 +158,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/userBypage?access_token=ACCES
 |position|职位信息|
 |avatar|头像url|
 |jobnumber|员工工号|
-|hiredDate|入职时间|
+|hired_date|入职时间|
 
 ##获取企业的管理员列表
 
@@ -169,7 +170,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/userBypage?access_token=ACCES
 * 请求地址：
 
 ```
-https://api.cloud_industry.qcloud.com/cgi-bin/corp/adminlist?access_token=ACCESS_TOKEN&corpid=1
+https://api.cloud_industry.qcloud.com/cgi-bin/corp/admin_ids?access_token=ACCESS_TOKEN&corpid=1
 
 ```
 ### 4.2传入参数
@@ -213,10 +214,10 @@ CLIENT_SUBSCRIBE_URI
 ```
 {
     "topic": "corpChange",
-    "changeList": [
+    "changelist": [
         {
-            "corpId": "corpid",
-            "userCount": 5,
+            "corpid": "corpid",
+            "user_count": 5,
             "users" : [ "userid1" , "userid2" , "userid3" ...],
             "admin": [ "userid1", "userid2" ...]
             "name": "企业名称",
@@ -240,51 +241,4 @@ CLIENT_SUBSCRIBE_URI
 > 前置条件：应用为工业云内部应用，且已注册订阅URI
 
 
-
-## 订阅部门信息修改
-
-http(s)请求方式POST:
-
-```
-CLIENT_SUBSCRIBE_URI
-```
-请求JSON包体
-
-```
-{
-    "topic": "deptChange",
-    "changeList": [
-        {
-            "changeType": "add", // 新增一个部门
-            "deptId": "253",
-            "name" : "部门名称",
-            "parent" : "336", // 父部门deptId, 如创建根部门，不传入该参数
-            "leader" : "userid" // 部门领导userId, userId必须在企业内, 一个部门只有一个leader
-            "employees": ["userid1", "userid2" ...]
-        },
-        {
-            "changeType": "modify", // 修改一个部门
-            "deptId": "253",
-            "name" : "部门名称",
-            "parent" : "336", // 父部门deptId, 如创建根部门，不传入该参数
-            "leader" : "userid" // 部门领导userId, userId必须在企业内, 一个部门只有一个leader
-            "employees": ["userid1", "userid2" ...]
-        },
-        {
-            "changeType": "modify", // 删除一个部门
-            "deptId": "253",
-        }
-    ]
-}
-```
-
-返回说明
-
-```
-{
-    "code": 0
-}
-```
-
-> 前置条件：应用为工业云内部应用，且已注册订阅URI
 

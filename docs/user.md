@@ -25,13 +25,12 @@ https://api.cloud_industry.qcloud.com/cgi-bin/user/access_token=ACCESS_TOKEN
  
 ### 1.3返回说明
 
-```   1        10
-limit start， offset
+```  
       
 {
     "code" : 0,
     "total" :1000,
-    "userlist__": [
+    "userlist": [
         {
             "userId": "userid",
             "name": "用户1", // 姓名
@@ -43,11 +42,11 @@ limit start， offset
               ...
             "roles": [
                 {
-                    "corpId": "corpid1", // 用户所属企业的id
+                    "corpid": "corpid1", // 用户所属企业的id
                     "role": "admin" // 用户角色：admin: 企业管理员，user: 企业普通用户
                 },
                 {
-                    "corpId": "corpid2", // 用户所属企业的id
+                    "corpid": "corpid2", // 用户所属企业的id
                     "role": "user" // 用户角色：admin: 企业管理员，user: 企业普通用户
                 }
             ]
