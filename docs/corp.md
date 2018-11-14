@@ -4,22 +4,27 @@
 
 ## 获取企业基础信息
 
-### 1.1接口描述
-https请求方式GET
+### 接口描述
+https请求方式POST
 
 ```
-https://api.cloud_industry.qcloud.com/cgi-bin/corps?access_token=ACCESS_TOKEN&corpids=corpid1,corpid2
+PRE_URL/cgi-bin/corps?access_token=ACCESS_TOKEN
 ```
 
-### 1.2传入参数
+### 参数说明
 
-| 参数名称 | 必选 | 类型 | 描述 |
-| --- | --- | --- | --- |
-| access_token | 是 | String | 公共参数 |
-| corpids | 是 |Array  |  |
+```
+{
+    "corpids": ["001","002"]
+}
+```
+
+| 参数名称 | 必选  | 描述 |
+| --- | --- | --- |
+| corpids | 是   | 企业的id列表，最多不能超过50个|
 
 
-### 1.3返回说明
+### 返回说明
 
 ```
 
@@ -43,16 +48,16 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corps?access_token=ACCESS_TOKEN&co
 
 ## 获取企业下用户userid列表
 
-### 2.1接口描述
+### 接口描述
 
 * 请求方式：GET（HTTPS）
 * 请求地址：
 
 ```
-https://api.cloud_industry.qcloud.com/cgi-bin/corp/userids?access_token=ACCESS_TOKEN&corp_id=corpid1&offset=0&size=100
+PRE_URL/cgi-bin/corp/userids?access_token=ACCESS_TOKEN&corp_id=corpid1&offset=0&size=100
 
 ```
-### 2.2传入参数
+### 参数说明
 | 参数名称 | 必选 | 类型 | 描述 |
 | --- | --- | --- | --- |
 | access_token | 是 | String | 公共参数，调用接口凭证 |
@@ -61,7 +66,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/userids?access_token=ACCESS_T
 | size |否|int|支持分页查询，与offset参数同时设置时才生效，此参数代表分页大小，最大100,排序说明-代表按照用户关联到企业账号时间升序
 
 
-### 2.3返回说明
+### 返回说明
 
 ```
 {
@@ -89,14 +94,15 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/userids?access_token=ACCESS_T
 
 ## 获取企业下用户详情列表
 
-### 3.1接口描述
+### 接口描述
 
 请求方式：GET（HTTPS）
 请求地址：
+
 ```
-https://api.cloud_industry.qcloud.com/cgi-bin/corp/users?access_token=ACCESS_TOKEN&corp_id=corpid1&offset=0&size=100
+PRE_URL/cgi-bin/corp/users?access_token=ACCESS_TOKEN&corp_id=corpid1&offset=0&size=100
 ```
-### 3.2传入参数
+### 参数说明
 
 | 参数名称 | 必选 | 类型 | 描述 |
 | --- | --- | --- | --- |
@@ -106,7 +112,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/users?access_token=ACCESS_TOK
 | size |否|int|支持分页查询，与offset参数同时设置时才生效，此参数代表分页大小，最大100，排序说明-代表按照用户关联到企业账号时间升序
 
 
-### 3.3返回结果
+### 返回结果
 
 ```
 {
@@ -140,7 +146,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/users?access_token=ACCESS_TOK
 }
 ```
 
-* 参数说明
+* 返回说明
 
 | 参数名称 | 描述 |
 | --- | --- |
@@ -162,7 +168,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/users?access_token=ACCESS_TOK
 
 ##获取企业的管理员列表
 
-### 4.1接口描述
+### 接口描述
 
 是企业内部管理员，则有权限调用。
 
@@ -170,10 +176,10 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/users?access_token=ACCESS_TOK
 * 请求地址：
 
 ```
-https://api.cloud_industry.qcloud.com/cgi-bin/corp/admin_ids?access_token=ACCESS_TOKEN&corp_id=corpid1
+PRE_URL/cgi-bin/corp/admin_ids?access_token=ACCESS_TOKEN&corp_id=corpid1
 
 ```
-### 4.2传入参数
+### 参数说明
 
 | 参数名称 | 必选 | 类型 | 描述 |
 | --- | --- | --- | --- |
@@ -181,7 +187,7 @@ https://api.cloud_industry.qcloud.com/cgi-bin/corp/admin_ids?access_token=ACCESS
 | corp_id | 否 |String  | 企业唯一标识 |
 
 
-### 4.3返回结果
+### 返回结果
 
 ```
 {

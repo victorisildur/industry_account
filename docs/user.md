@@ -5,25 +5,32 @@
 
 ##获取用户详情
 
-### 1.1接口描述
-接口请求域名：api.cloud_industry.qcloud.com 。
+### 接口描述
 
 通过 corp_id+user_id，可以在一个企业内唯一确定一个用户，通过免登授权可以获取到当前用户的user_id，再通过user_id调用本接口，获取用户的详情
 
-https请求方式GET
+https请求方式POST
 
 ```
-https://api.cloud_industry.qcloud.com/cgi-bin/user/access_token=ACCESS_TOKEN
+PRE_URL/cgi-bin/user?access_token=ACCESS_TOKEN
 ```
-### 1.2传入参数
+### 参数说明
+
+请求JSON包体
+
+```
+{
+    "user_ids": ["userid"]
+}
+```
 
 
-| 参数名称 | 必选 | 类型 | 描述 |
-| --- | --- | --- | --- |
-| access_token | 是 | String | 公共参数，调用接口凭证 |
-| user_ids|  是| Array  | 被查询的用户userid列表 |
+| 参数名称 | 必选  | 描述 |
+| --- | --- | --- |
+| access_token | 是  | 公共参数，调用接口凭证 |
+| user_ids|  是  | 被查询的用户userid列表,最多不超过100个|
 
-### 1.3返回说明
+### 返回说明
 
 ```  
       

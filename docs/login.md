@@ -141,47 +141,5 @@ boss->第三方应用: boss在原open接口多传 \n login_appid, login_appsecre
 
 > 前置条件：boss与第三方应用约定，保存第三方应用的`name`, `redirect_fqdn`, `logo`，以供boss调用[申请创建单点登录应用API](app.md)时使用
 
-## 企业管理员在boss上删除第三方应用
 
-```sequence
-participant 用户
-participant boss
-participant 第三方应用
-participant 工业云平台
 
-用户->boss: 管理员登录
-boss->第三方应用: DELETE删除软件服务
-第三方应用-->boss: 成功
-boss->工业云平台: 删除单点登录应用API
-工业云平台-->boss: 成功
-```
-
-## 企业管理员向第三方应用添加用户
-
-```sequence
-participant 用户
-participant boss
-participant 第三方应用
-participant 工业云平台
-
-用户->boss:管理员登录
-boss->第三方应用: USER_ASSIGN创建用户
-第三方应用-->boss: 成功
-boss->工业云平台: 开通用户单点登录应用权限API
-工业云平台-->boss: 成功
-```
-
-## 企业管理员从第三方应用移出用户
-
-```sequence
-participant 用户
-participant boss
-participant 第三方应用
-participant 工业云平台
-
-用户->boss: 管理员登录
-boss->第三方应用: USER_UNASSIGN删除部门
-第三方应用-->boss: 成功
-boss->工业云平台: 关闭用户单点登录应用权限API 
-工业云平台-->boss: 成功
-```
