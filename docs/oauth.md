@@ -2,7 +2,7 @@
 
 ## 统一单点登录
 
-1. 统一登录页面url: `https://cloud.industry.com/oauth/login?client_id={client_appid}&redirect_uri={client_redirect_uri}&response_type=code`
+1. 统一登录页面url: `https://cloud.industry.com/oauth/login?login_appid={client_appid}&redirect_uri={client_redirect_uri}&response_type=code`
 
 2. 统一登录页判断`client_redirect_uri`是否在应用注册的重定向域名下，如果满足域名约束且用户输入正确的用户名密码后，统一登录页重定向到地址`{client_redirect_uri}?code={code}`
 

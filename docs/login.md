@@ -56,21 +56,27 @@ participant 工业云平台
 用户在第三方应用上发起登录，第三方应用将用户导向工业云平台单点登录页
 
 ```
-https://cloud_industry.com/login?login_appid={login_appid}&redirect_uri={redirect_uri}
+https://{INDUSTRY_DOMAIN}/login?login_appid={login_appid}&redirect_uri={redirect_uri}&scope=all&state={state}
 ```
 
+| 参数  | 含义 | 是否必填 |
+| --- | --- | --- | 
+| login_appid | 第三方应用的login_appid | 是 |
+| scope | 授权范围，值："all" | 是 |
+| redirect_uri | 授权成功重定向地址 | 是 |
+| state | 第三方应用填写，工业云平台在回跳redirect_uri时会原样返回，用于防CSRF攻击 | 否 |
 
 **第2步详解**
 
 用户在工业云平台单点登录页面输入在工业云平台注册的用户名、密码，点击登录。
 
-工业云平台验证用户名密码，如通过，返回302到第三方应用事先指定的重定向地址（redirection URI），同时附上一个授权码。
+工业云平台验证用户名密码，如通过，返回302到第三方应用事先指定的重定向地址（redirect_uri），同时附上一个授权码。
 
 返回Headers:
 
 ```
 Status Code: 302
-Location: https://client.example.com/cb?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz
+Location: {REDIRECT_URI}?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz
 ```
 
 **第3、4步详解**
@@ -80,20 +86,27 @@ Location: https://client.example.com/cb?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz
 这一步是在app的后台的服务器上完成的，对用户不可见。
 
 
-请求方式GET：
+请求方式GET
 
 ```
-https://cloud_industry.com/oauth/token?grant_type=authorization_code&code={code}&redirect_uri={redirect_uri}&login_appid={login_appid}&login_appsecret={login_appsecret}&state={state}
+https://{INDUSTRY_DOMAIN}/oauth/token?grant_type=authorization_code&code={code}&redirect_uri={redirect_uri}&login_appid={login_appid}&login_appsecret={login_appsecret}
 ```
 
-| 参数 | 含义 |
-| --- | ---- |
-| grant_type | 表示使用的授权模式，必选项，此处的值固定为”authorization_code" |
-| code | 表示上一步获得的授权码，必选项 |
-| redirect_uri | 表示重定向URI，必选项，且必须与A步骤中的该参数值保持一致 |
-| login_appid | 表示appID，必选项 |
-| secret | 表示app密钥，必选项 |
-| state | 第三方应用随机生成，工业云平台会原样返回，用于防CSRF攻击 |
+    "grant_type": "authorization_code",
+    "code": "code",
+    "login_appid": "login_appid",
+    "client_secret": "login_appsecret",
+    "redirect_uri": "uri",
+}
+```
+
+| 参数 | 含义 | 是否必填 |
+| --- | ---- | --- |
+| grant_type | 表示使用的授权模式，此处的值固定为”authorization_code" | 是 |
+| code | 表示上一步获得的授权码 | 是 |
+| redirect_uri | 表示重定向URI，且必须与A步骤中的该参数值保持一致 | 是 |
+| login_appid | 表示appID | 是  |
+| login_appsecret | 表示app密钥 | 是 |
 
 
 **第5步详解**
@@ -109,8 +122,6 @@ https://cloud_industry.com/oauth/token?grant_type=authorization_code&code={code}
     "token_type": "Bearer",
     "refresh_token": "5VO-NEIVVQAMV9KXP_VPNA",
     "expires_in": "2018-11-13T12:21:38.655826+08:00"
-    "user_id": "userid"
-    "state": "state" // 原样带回，用于防止csrf攻击
 }
 ```
 
@@ -120,8 +131,6 @@ https://cloud_industry.com/oauth/token?grant_type=authorization_code&code={code}
 | token_type | 表示令牌类型，该值大小写不敏感，必选项，可以是bearer类型或mac类型 |
 | expires_in | 表示过期时间，单位为秒。如果省略该参数，必须其他方式设置过期时间 | 
 | refresh_token | 表示更新令牌，用来获取下一次的访问令牌，可选项 |
-| state | 第三方应用随机生成，工业云平台会原样返回，用于防CSRF攻击 |
-| user_id | 用户id |
 
 
 ## 企业管理员在boss上购买第三方应用
