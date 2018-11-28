@@ -141,5 +141,3 @@ boss->第三方应用: boss在原open接口多传 \n login_appid, login_appsecre
 
 > 前置条件：boss与第三方应用约定，保存第三方应用的`name`, `redirect_fqdn`, `logo`，以供boss调用[申请创建单点登录应用API](app.md)时使用
 
-
-
