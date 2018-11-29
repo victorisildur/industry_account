@@ -4,14 +4,13 @@
 
 ## 获取企业基础信息
 
-### 接口描述
-https请求方式POST
+请求方式POST
 
 ```
 {INDUSTRY_DOMAIN}/corps?access_token=ACCESS_TOKEN
 ```
 
-### 参数说明
+请求JSON包体
 
 ```
 {
@@ -23,8 +22,7 @@ https请求方式POST
 | --- | --- | --- |
 | corpids | 是   | 企业的id列表，最多不能超过50个|
 
-
-### 返回说明
+返回JSON包体
 
 ```
 {
@@ -55,6 +53,7 @@ https请求方式POST
 ```
 {INDUSTRY_DOMAIN}/corp/{corpid}/users?access_token={access_token}&offset=0&size=100
 ```
+
 ### 参数说明
 
 | 参数名称 | 必选 | 类型 | 描述 |
@@ -85,7 +84,7 @@ https请求方式POST
 
 ## 订阅企业信息变更通知
 
-http(s)请求方式POST
+请求方式POST
 
 ```
 CLIENT_SUBSCRIBE_URI
