@@ -1,18 +1,47 @@
-#用户管理API
 [TOC]
 
+#用户管理API
 
+## 获取用户详情
 
-##获取用户详情
+https请求方式GET
+
+```
+{INDUSTRY_DOMAIN}/user/{userid}?access_token=ACCESS_TOKEN
+```
+
+返回包体
+
+```
+{
+    "code": 0,
+    "msg": "",
+    "name": "user name",
+    "email": "email",
+    "tel": "123123123",
+    "status": 1,
+    "roles": [
+        {
+            "corp_id": "corpid1", 
+            "role": "admin"
+        },
+        {
+            "corp_id": "corpid2", 
+            "role": "user"
+        }
+        ...
+    ]
+}
+```
+
+## 获取用户详情列表
 
 ### 接口描述
-
-通过 corp_id+user_id，可以在一个企业内唯一确定一个用户，通过免登授权可以获取到当前用户的user_id，再通过user_id调用本接口，获取用户的详情
 
 https请求方式POST
 
 ```
-PRE_URL/cgi-bin/user?access_token=ACCESS_TOKEN
+{INDUSTRY_DOMAIN}/users?access_token=ACCESS_TOKEN
 ```
 ### 参数说明
 
@@ -20,7 +49,7 @@ PRE_URL/cgi-bin/user?access_token=ACCESS_TOKEN
 
 ```
 {
-    "user_ids": ["userid"]
+    "user_ids": ["userid1", "userid2"]
 }
 ```
 
@@ -36,7 +65,7 @@ PRE_URL/cgi-bin/user?access_token=ACCESS_TOKEN
       
 {
     "code" : 0,
-    "userlist": [
+    "users": [
         {
             "user_id": "userid",
             "name": "用户1", // 姓名
@@ -60,9 +89,6 @@ PRE_URL/cgi-bin/user?access_token=ACCESS_TOKEN
     ]
 }
 ```
-
-
-
 
 
 ## 订阅用户信息变更通知
