@@ -2,11 +2,11 @@
 
 ## 统一单点登录
 
-1. 统一登录页面url: `https://cloud.industry.com/oauth/login?login_appid={client_appid}&redirect_uri={client_redirect_uri}&response_type=code`
+1. 统一登录页面url: `https://{INDUSTRY_DOMAIN}/login?login_appid={client_appid}&redirect_uri={client_redirect_uri}&scope={scope}&state={state}`
 
-2. 统一登录页判断`client_redirect_uri`是否在应用注册的重定向域名下，如果满足域名约束且用户输入正确的用户名密码后，统一登录页重定向到地址`{client_redirect_uri}?code={code}`
+2. 统一登录页判断`client_redirect_uri`是否在应用注册的重定向域名下，如果满足域名约束且用户输入正确的用户名密码后，统一登录页重定向到地址`{client_redirect_uri}?code={code}&state={state}`
 
-3. 应用接入方在`client_redirect_uri`根据uri里的code参数, 自己的client_appid, client_appsecret请求`https://cloud.industry.com/oauth/access_token`接口，获取access_token(详见[应用登录流程](login.md))
+3. 应用接入方在`client_redirect_uri`根据uri里的code参数, 自己的client_appid, client_appsecret请求`https://{INDUSTRY_DOMAIN}/oauth/access_token`接口，获取access_token(详见[应用登录流程](login.md))
 
 4. 应用根据access_token，即可调用工业云账号系统的全部API
 

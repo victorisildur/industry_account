@@ -5,7 +5,7 @@
 https请求方式POST
 
 ```
-https://api.cloud_industry.qcloud.com/cgi/app?access_token={access_token}
+https://{INDUSTRY_DOMAIN}/login_app?access_token={access_token}
 ```
 
 请求JSON说明
@@ -15,7 +15,8 @@ https://api.cloud_industry.qcloud.com/cgi/app?access_token={access_token}
     "corp_id": "corpid1" // 企业CorpId
     "name": "app name", // 应用名称
     "logo": "logo url", // 应用logo url
-    "redirect_fqdn": "www.qq.com" // 回调地址的FQDN
+    "domain": "www.qq.com", // 回调地址的域名
+    "subscribe_uri": "example.com/subscrieb", // 订阅uri
 }
 ```
 
@@ -35,7 +36,7 @@ https://api.cloud_industry.qcloud.com/cgi/app?access_token={access_token}
 https请求方式DELETE
 
 ```
-https://api.cloud_industry.qcloud.com/cgi/app/{login_appid}?access_token={access_token}
+https://{INDUSTRY_DOMAIN}/login_app/{login_appid}?access_token={access_token}
 ```
 
 返回说明
@@ -52,7 +53,7 @@ https://api.cloud_industry.qcloud.com/cgi/app/{login_appid}?access_token={access
 https请求方式PUT
 
 ```
-https://api.cloud_industry.qcloud.com/cgi-bin/org/app/user?access_token={access_token}
+https://{INDUSTRY_DOMAIN}/login_app/{login_appid}/users?access_token={access_token}
 ```
 
 
@@ -60,7 +61,6 @@ https://api.cloud_industry.qcloud.com/cgi-bin/org/app/user?access_token={access_
 
 ```
 {
- "login_appid": "appid",  // 应用的LoginAppId
  "corp_id": "corpid", // 开通用户所属企业的corpid
  "users": ["userid1", "userid2", "userid3"] // 批量开启/关闭
  "action": "enable" // "enable"表示开通，"disable"表示关闭
