@@ -36,14 +36,11 @@ https请求方式GET
 
 ## 获取用户详情列表
 
-### 接口描述
-
 https请求方式POST
 
 ```
 {INDUSTRY_DOMAIN}/users?access_token=ACCESS_TOKEN
 ```
-### 参数说明
 
 请求JSON包体
 
@@ -59,7 +56,7 @@ https请求方式POST
 | access_token | 是  | 公共参数，调用接口凭证 |
 | user_ids|  是  | 被查询的用户userid列表,最多不超过100个|
 
-### 返回说明
+返回JSON包体
 
 ```  
       

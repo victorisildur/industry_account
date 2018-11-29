@@ -52,7 +52,7 @@ https://{INDUSTRY_DOMAIN}/login_app/{login_appid}?access_token={access_token}
 
 ## 开通/关闭用户单点登录应用的权限
 
-https请求方式PUT
+https请求方式POST
 
 ```
 https://{INDUSTRY_DOMAIN}/login_app/{login_appid}/users?access_token={access_token}
