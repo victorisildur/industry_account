@@ -94,6 +94,7 @@ Location: {REDIRECT_URI}?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz
 https://{INDUSTRY_DOMAIN}/oauth/token?grant_type=authorization_code&code={code}&redirect_uri={redirect_uri}&login_appid={login_appid}&login_appsecret={login_appsecret}
 ```
 
+```
     "grant_type": "authorization_code",
     "code": "code",
     "login_appid": "login_appid",
