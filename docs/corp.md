@@ -26,8 +26,8 @@
 
 ```
 {
-   "errcode": 0,
-   "errmsg": "ok",
+   "code" : 0,
+   "msg" : "ok",
    "corps": [
         {
             "corp_id": "id",
@@ -64,8 +64,8 @@
 
 ```
 {
-    "code": 0,
-    "msg": "ok",
+    "code" : 0,
+    "msg" : "ok",
     "users":[
         {
             "name": "user name",
@@ -109,7 +109,8 @@ CLIENT_SUBSCRIBE_URI
 
 ```
 {
-    "code": 0
+    "code" : 0,
+    "msg" : "ok"
 }
 ```
 > 前置条件：应用为工业云内部应用，且已注册订阅URI

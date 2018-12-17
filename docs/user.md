@@ -15,7 +15,7 @@ https请求方式GET
 ```
 {
     "code": 0,
-    "msg": "",
+    "msg": "ok",
     "name": "user name",
     "email": "email",
     "tel": "123123123",
@@ -61,7 +61,8 @@ https请求方式POST
 ```  
       
 {
-    "code" : 0,
+    "code": 0,
+    "msg": "ok",
     "users": [
         {
             "user_id": "userid",
@@ -147,6 +148,7 @@ CLIENT_SUBSCRIBE_URI
 ```
 {
     "code": 0,
+    "msg": "ok"
 }
 ```
 

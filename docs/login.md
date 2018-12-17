@@ -120,7 +120,8 @@ https://{INDUSTRY_DOMAIN}/oauth/token?grant_type=authorization_code&code={code}&
 
 ```
 {
-    "code": 0,
+    "code" : 0,
+    "msg" : "ok",
     "access_token": "access_token",
     "token_type": "Bearer",
     "refresh_token": "5VO-NEIVVQAMV9KXP_VPNA",

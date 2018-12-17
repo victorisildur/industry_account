@@ -27,6 +27,7 @@ https://{INDUSTRY_DOMAIN}/login_app?access_token={access_token}
 ```
 {
    "code" : 0,
+   "msg" : "ok",
    "login_appid": "6ea90b347c0fd", // 单点登录login appid
    "login_appsecret": "23d8xh3yx93j7", // 单点登录login app secret
    "virtual_admin": "adminUserId"  // 为第三方应用创建应用管理员
@@ -45,7 +46,8 @@ https://{INDUSTRY_DOMAIN}/login_app/{login_appid}?access_token={access_token}
 
 ```
 {
-   "code" : 0
+   "code" : 0,
+   "msg" : "ok"
 }
 ```
 
@@ -73,6 +75,7 @@ https://{INDUSTRY_DOMAIN}/login_app/{login_appid}/users?access_token={access_tok
 
 ```
 {
-    "code" : 0
+   "code" : 0,
+   "msg" : "ok"
 }
 ```
