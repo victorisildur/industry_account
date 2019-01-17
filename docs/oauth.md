@@ -8,9 +8,9 @@
 
 2. 统一登录页判断`client_redirect_uri`是否在应用注册的重定向域名下，如果满足域名约束且用户输入正确的用户名密码后，统一登录页重定向到地址`{client_redirect_uri}?code={code}&state={state}`
 
-3. 应用接入方在`client_redirect_uri`根据uri里的code参数, 自己的client_appid, client_appsecret请求`https://{INDUSTRY_DOMAIN}/oauth/access_token`接口，获取access_token(详见[应用登录流程](login.md))
+3. 应用接入方在`client_redirect_uri`根据uri里的code参数, 自己的login_appid, login_appsecret请求`https://{INDUSTRY_DOMAIN}/oauth/access_token`接口，获取access_token, id_token(详见[应用登录流程](login.md))
 
-4. 应用根据access_token，即可调用工业云账号系统的全部API
+4. 应用根据access_token，即可调用工业云账号系统的全部API, 根据id_token，可解出用户id，用户所属企业。id_token可用户跨login_appid身份认证
 
 
 ```
@@ -48,6 +48,40 @@ access_token的有效期目前为2个小时，需定时刷新。
 * [用户管理API](user.md)
 * [企业管理API](corp.md)
 * [应用管理API](app.md)
+
+## id_token验证
+
+请求方式GET
+
+```
+/oauth/jwks?id_token={id_token}
+```
+
+返回Body
+
+```
+{
+    "code": 0,
+    "msg": "ok",
+    "iss": "iam",
+    "aud": "1012831",
+    "sub": "1762937162"
+    "cp": "1834712947",
+    "exp": 1579077463,
+    "iat": 1547541463,
+}
+```
+
+| 参数 | 类型 | 说明 |
+| ---- | --- | --- |
+| code | int | 错误码 0为成功 |
+| msg | string | 文本消息 |
+| iss | string | 签发者 |
+| aud | string | 受众id(login_appid) |
+| sub | string | 用户id | 
+| cp | string | 用户所属公司id, 如有多个，以+连接 |
+| exp | int | 到期时间戳(s) |
+| iat | int | 签发时间戳 |
 
 ## API鉴权
 

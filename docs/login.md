@@ -125,6 +125,7 @@ https://{INDUSTRY_DOMAIN}/oauth/token?grant_type=authorization_code&code={code}&
     "access_token": "access_token",
     "token_type": "Bearer",
     "refresh_token": "5VO-NEIVVQAMV9KXP_VPNA",
+    "id_token": "xxxx.yyyy.zzzz",
     "expires_in": "2018-11-13T12:21:38.655826+08:00"
     "user_id": "userid"
 }
@@ -133,6 +134,7 @@ https://{INDUSTRY_DOMAIN}/oauth/token?grant_type=authorization_code&code={code}&
 | 参数 | 含义 |
 | --- | --- |
 | access_token | 表示访问令牌，必选项 |
+| id_token | id_token，JWT格式 |
 | token_type | 表示令牌类型，该值大小写不敏感，必选项，可以是bearer类型或mac类型 |
 | expires_in | 表示过期时间，单位为秒。如果省略该参数，必须其他方式设置过期时间 | 
 | refresh_token | 表示更新令牌，用来获取下一次的访问令牌，可选项 |
