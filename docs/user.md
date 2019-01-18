@@ -4,84 +4,86 @@
 
 ## 获取用户详情
 
-https请求方式GET
+请求方式GET
 
 ```
-{INDUSTRY_DOMAIN}/user/{userid}?access_token=ACCESS_TOKEN
+http://129.211.44.155:8088/user/{userid}?access_token=ACCESS_TOKEN
 ```
 
 返回包体
 
 ```
 {
-    "code": 0,
-    "msg": "ok",
-    "name": "user name",
-    "email": "email",
-    "tel": "123123123",
-    "status": 1,
-    "roles": [
+    "Code": 0,
+    "Msg": "ok",
+    "Name": "user name",
+    "Email": "email",
+    "Tel": "123123123",
+    "Status": 1,
+    "Roles": [
         {
-            "corp_id": "corpid1", 
-            "role": "admin"
-        },
-        {
-            "corp_id": "corpid2", 
-            "role": "user"
-        }
-        ...
+            "CorpId": "corpid1", 
+            "Role": "admin"
+        }...
     ]
 }
 ```
+
+| 参数 | 类型 | 说明 |
+| -- | -- | -- |
+| Code | int | 错误码 |
+| Msg | string | 消息 |
+| Name | string | 用户名 |
+| Email | string | email |
+| Tel | string | 电话 |
+| Status | int | 用户状态. 0:账户未激活,1:账户已激活,2:账户认证中,3:账户认证通过,4:账户认证拒绝 |
+| Roles | array | 用户企业角色列表（用户可能属于多个企业） |
+| CorpId | string | 企业 id |
+| Role | int | 用户在企业里的角色：1: 企业管理员，0: 企业普通用户 |
 
 ## 获取用户详情列表
 
 https请求方式POST
 
 ```
-{INDUSTRY_DOMAIN}/users?access_token=ACCESS_TOKEN
+http://129.211.44.155:8088/users?access_token=ACCESS_TOKEN
 ```
 
 请求JSON包体
 
 ```
 {
-    "user_ids": ["userid1", "userid2"]
+    "UserIds": ["userid1", "userid2"]
 }
 ```
 
 
 | 参数名称 | 必选  | 描述 |
 | --- | --- | --- |
-| access_token | 是  | 公共参数，调用接口凭证 |
-| user_ids|  是  | 被查询的用户userid列表,最多不超过100个|
+| UserIds|  是  | 被查询的用户userid列表,最多不超过100个|
 
 返回JSON包体
 
 ```  
       
 {
-    "code": 0,
-    "msg": "ok",
-    "users": [
+    "Code": 0,
+    "Msg": "ok",
+    "Users": [
         {
-            "user_id": "userid",
-            "name": "用户1", // 姓名
-            "gender": 1, // 性别
-            "tel": "18902387651", // 电话
-            "email": "eux@hotmail.com", // email
-            "id": "id", // 身份证号,
-            "state": 0, // 0: 未实名认证，1： 已实名认证
+            "UserId": "userid",
+            "Name": "用户1", // 姓名
+            "Gender": 1, // 性别
+            "Tel": "18902387651", // 电话
+            "Email": "eux@hotmail.com", // email
+            "Id": "id", // 身份证号,
+            "State": 0, // 0: 未实名认证，1： 已实名认证
               ...
-            "roles": [
+            "Roles": [
                 {
-                    "corp_id": "corpid1", // 用户所属企业的id
-                    "role": "admin" // 用户角色：admin: 企业管理员，user: 企业普通用户
+                    "CorpId": "corpid1", // 用户所属企业的id
+                    "Role": 0 // 用户角色：1: 企业管理员，0: 企业普通用户
                 },
-                {
-                    "corp_id": "corpid2", // 用户所属企业的id
-                    "role": "user" // 用户角色：admin: 企业管理员，user: 企业普通用户
-                }
             ]
         }, 
     ]
@@ -101,43 +103,43 @@ CLIENT_SUBSCRIBE_URI
 
 ```
 {
-    "topic": "userChange",
-    "changelist": [
+    "Topic": "userChange",
+    "ChangeList": [
         {
-            "change_type": "add", // 新增一个user
-            "user_id": "userid",
-            "name": "name",
-            "gender": 1,
-            "tel": "tel",
-            "email": "email"
-            "id": "id", // 身份证号,
-            "state": 0, // 0: 未实名认证，1： 已实名认证
-            "roles": [
+            "ChangeType": "add", // 新增一个user
+            "UserId": "userid",
+            "Name": "name",
+            "Gender": 1,
+            "Tel": "tel",
+            "Email": "email"
+            "Id": "id", // 身份证号,
+            "State": 0, // 0: 未实名认证，1： 已实名认证
+            "Roles": [
                 {
-                    "corp_id": "corpid",
-                    "role": "user"
+                    "CorpId": "corpid",
+                    "Role": 0
                 }
             ]
         },
         {
-            "change_type": "modify", // 修改一个user
-            "user_id": "userid",
-            "name": "name",
-            "gender": 1,
-            "tel": "tel",
-            "email": "email"
-            "id": "id", // 身份证号,
-            "state": 0, // 0: 未实名认证，1： 已实名认证
-            "roles": [
+            "ChangeType": "Modify", // 修改一个user
+            "UserId": "userid",
+            "Name": "name",
+            "Gender": 1,
+            "Tel": "tel",
+            "Email": "email"
+            "Id": "id", // 身份证号,
+            "State": 0, // 0: 未实名认证，1： 已实名认证
+            "Roles": [
                 {
-                    "corp_id": "corpid",
-                    "role": "user"
+                    "CorpId": "corpid",
+                    "Role": "user"
                 }
             ]
         },
         {
-            "change_type": "delete", //删除一个user
-            "user_id": "userid",
+            "ChangeType": "delete", //删除一个user
+            "UserId": "userid",
         }
     ]
 }
@@ -147,8 +149,8 @@ CLIENT_SUBSCRIBE_URI
 
 ```
 {
-    "code": 0,
-    "msg": "ok"
+    "Code": 0,
+    "Msg": "ok"
 }
 ```
 

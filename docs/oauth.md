@@ -4,11 +4,11 @@
 
 ## 统一单点登录
 
-1. 统一登录页面url: `https://{INDUSTRY_DOMAIN}/login?login_appid={client_appid}&redirect_uri={client_redirect_uri}&scope={scope}&state={state}`
+1. 统一登录页面url: `https://129.211.44.155:9092/login?login_appid={client_appid}&redirect_uri={client_redirect_uri}&scope={scope}&state={state}`
 
 2. 统一登录页判断`client_redirect_uri`是否在应用注册的重定向域名下，如果满足域名约束且用户输入正确的用户名密码后，统一登录页重定向到地址`{client_redirect_uri}?code={code}&state={state}`
 
-3. 应用接入方在`client_redirect_uri`根据uri里的code参数, 自己的login_appid, login_appsecret请求`https://{INDUSTRY_DOMAIN}/oauth/access_token`接口，获取access_token, id_token(详见[应用登录流程](login.md))
+3. 应用接入方在`client_redirect_uri`根据uri里的code参数, 自己的login_appid, login_appsecret请求`https://129.211.44.155:8088/api/v1/oauth/access_token`接口，获取access_token, id_token(详见[应用登录流程](login.md))
 
 4. 应用根据access_token，即可调用工业云账号系统的全部API, 根据id_token，可解出用户id，用户所属企业。id_token可用户跨login_appid身份认证
 
@@ -54,8 +54,10 @@ access_token的有效期目前为2个小时，需定时刷新。
 请求方式GET
 
 ```
-/oauth/jwks?id_token={id_token}
+http://129.211.44.155:8088/api/v1/oauth/jwks?id_token={id_token}
 ```
+
+> 现阶段 INDUSTRY_HOST == '129.211.44.155:8088'
 
 返回Body
 

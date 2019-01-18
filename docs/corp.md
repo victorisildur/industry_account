@@ -7,37 +7,39 @@
 请求方式POST
 
 ```
-{INDUSTRY_DOMAIN}/corps?access_token=ACCESS_TOKEN
+http://129.211.44.155:8088/api/v1/corps?access_token=ACCESS_TOKEN
 ```
+
+
 
 请求JSON包体
 
 ```
 {
-    "corpids": ["001","002"]
+    "CorpIds": ["001","002"]
 }
 ```
 
 | 参数名称 | 必选  | 描述 |
 | --- | --- | --- |
-| corpids | 是   | 企业的id列表，最多不能超过50个|
+| CorpIds | 是   | 企业的id列表，最多不能超过50个|
 
 返回JSON包体
 
 ```
 {
-   "code" : 0,
-   "msg" : "ok",
-   "corps": [
+   "Code" : 0,
+   "Msg" : "ok",
+   "Corps": [
         {
-            "corp_id": "id",
-            "name": "name",
-            "logo": "logo",
-            "email": "email",
-            "tel": "tel",
-            "addr": "address",
-            "type": 0,
-            "status": 1,
+            "CorpId": "id",
+            "Name": "name",
+            "Logo": "logo",
+            "Email": "email",
+            "Tel": "tel",
+            "Addr": "address",
+            "Type": 0,
+            "Status": 1,
            ...
         }
    ]
@@ -49,7 +51,7 @@
 请求方式GET
 
 ```
-{INDUSTRY_DOMAIN}/corp/{corpid}/users?access_token={access_token}&offset=0&size=100
+http://129.211.44.155:8088/api/v1/corp/{corpid}/users?access_token={access_token}&offset=0&size=100
 ```
 
 | 参数名称 | 必选 | 类型 | 描述 |
@@ -64,15 +66,15 @@
 
 ```
 {
-    "code" : 0,
-    "msg" : "ok",
-    "users":[
+    "Code" : 0,
+    "Msg" : "ok",
+    "Users":[
         {
-            "name": "user name",
-            "email": "email",
-            "phone": "123123123",
-            "status": 1,
-            "role": "admin"
+            "Name": "user name",
+            "Email": "email",
+            "Phone": "123123123",
+            "Status": 1,
+            "Role": 10
         }
     ]
 }
@@ -90,16 +92,16 @@ CLIENT_SUBSCRIBE_URI
 
 ```
 {
-    "topic": "corpChange",
-    "changelist": [
+    "Topic": "corpChange",
+    "ChangeList": [
         {
-            "corp_id": "corpid",
-            "user_count": 5,
-            "users" : [ "userid1" , "userid2" , "userid3" ...],
-            "admins": [ "userid1", "userid2" ...]
-            "name": "企业名称",
-            "addr": "地址",
-            "contacts": "张三"
+            "CorpId": "corpid",
+            "UserCount": 5,
+            "Users" : [ "userid1" , "userid2" , "userid3" ...],
+            "Admins": [ "userid1", "userid2" ...]
+            "Name": "企业名称",
+            "Addr": "地址",
+            "Contacts": "张三"
         }
     ]
 }
@@ -109,9 +111,10 @@ CLIENT_SUBSCRIBE_URI
 
 ```
 {
-    "code" : 0,
-    "msg" : "ok"
+    "Code" : 0,
+    "Msg" : "ok"
 }
 ```
+
 > 前置条件：应用为工业云内部应用，且已注册订阅URI
 

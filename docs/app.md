@@ -7,18 +7,18 @@
 https请求方式POST
 
 ```
-https://{INDUSTRY_DOMAIN}/login_app?access_token={access_token}
+http://129.211.44.155:8088/api/v1/login_app?access_token={access_token}
 ```
 
 请求JSON说明
 
 ```
 {
-    "corp_id": "corpid1" // 企业CorpId
-    "name": "app name", // 应用名称
-    "logo": "logo url", // 应用logo url
-    "domain": "www.qq.com", // 回调地址的域名
-    "subscribe_uri": "example.com/subscrieb", // 订阅uri
+    "CorpId": "corpid1" // 企业CorpId
+    "Name": "app name", // 应用名称
+    "Logo": "logo url", // 应用logo url
+    "Domain": "www.qq.com", // 回调地址的域名
+    "SubscribeUri": "example.com/subscrieb", // 订阅uri
 }
 ```
 
@@ -26,11 +26,11 @@ https://{INDUSTRY_DOMAIN}/login_app?access_token={access_token}
 
 ```
 {
-   "code" : 0,
-   "msg" : "ok",
-   "login_appid": "6ea90b347c0fd", // 单点登录login appid
-   "login_appsecret": "23d8xh3yx93j7", // 单点登录login app secret
-   "virtual_admin": "adminUserId"  // 为第三方应用创建应用管理员
+   "Code" : 0,
+   "Msg" : "ok",
+   "LoginAppid": "6ea90b347c0fd", // 单点登录login appid
+   "LoginAppsecret": "23d8xh3yx93j7", // 单点登录login app secret
+   "VirtualAdmin": "adminUserId"  // 企业虚拟管理员id
 }
 ```
 
@@ -39,15 +39,15 @@ https://{INDUSTRY_DOMAIN}/login_app?access_token={access_token}
 https请求方式DELETE
 
 ```
-https://{INDUSTRY_DOMAIN}/login_app/{login_appid}?access_token={access_token}
+http://129.211.44.155:8088/api/v1/login_app/{login_appid}?access_token={access_token}
 ```
 
 返回说明
 
 ```
 {
-   "code" : 0,
-   "msg" : "ok"
+   "Code" : 0,
+   "Msg" : "ok"
 }
 ```
 
@@ -57,7 +57,7 @@ https://{INDUSTRY_DOMAIN}/login_app/{login_appid}?access_token={access_token}
 https请求方式POST
 
 ```
-https://{INDUSTRY_DOMAIN}/login_app/{login_appid}/users?access_token={access_token}
+http://129.211.44.155:8088/api/v1/login_app/{login_appid}/users?access_token={access_token}
 ```
 
 
@@ -65,9 +65,9 @@ https://{INDUSTRY_DOMAIN}/login_app/{login_appid}/users?access_token={access_tok
 
 ```
 {
- "corp_id": "corpid", // 开通用户所属企业的corpid
- "users": ["userid1", "userid2", "userid3"] // 批量开启/关闭
- "action": "enable" // "enable"表示开通，"disable"表示关闭
+ "CorpId": "corpid", // 开通用户所属企业的corpid
+ "Users": ["userid1", "userid2", "userid3"] // 批量开启/关闭
+ "Action": "enable" // "enable"表示开通，"disable"表示关闭
 }
 ```
 
@@ -75,7 +75,7 @@ https://{INDUSTRY_DOMAIN}/login_app/{login_appid}/users?access_token={access_tok
 
 ```
 {
-   "code" : 0,
-   "msg" : "ok"
+   "Code" : 0,
+   "Msg" : "ok"
 }
 ```

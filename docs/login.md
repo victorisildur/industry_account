@@ -58,7 +58,7 @@ participant 工业云平台
 用户在第三方应用上发起登录，第三方应用将用户导向工业云平台单点登录页
 
 ```
-https://{INDUSTRY_DOMAIN}/login?login_appid={login_appid}&redirect_uri={redirect_uri}&scope=all&state={state}
+https://129.211.44.155:9092/login?login_appid={login_appid}&redirect_uri={redirect_uri}&scope=all&state={state}
 ```
 
 | 参数  | 含义 | 是否必填 |
@@ -91,16 +91,7 @@ Location: {REDIRECT_URI}?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz
 请求方式GET
 
 ```
-https://{INDUSTRY_DOMAIN}/oauth/token?grant_type=authorization_code&code={code}&redirect_uri={redirect_uri}&login_appid={login_appid}&login_appsecret={login_appsecret}
-```
-
-```
-    "grant_type": "authorization_code",
-    "code": "code",
-    "login_appid": "login_appid",
-    "client_secret": "login_appsecret",
-    "redirect_uri": "uri",
-}
+http://129.211.44.155:8088/oauth/token?grant_type=authorization_code&code={code}&redirect_uri={redirect_uri}&login_appid={login_appid}&login_appsecret={login_appsecret}
 ```
 
 | 参数 | 含义 | 是否必填 |
@@ -114,7 +105,7 @@ https://{INDUSTRY_DOMAIN}/oauth/token?grant_type=authorization_code&code={code}&
 
 **第5步详解**
 
-认证服务器核对了授权码和”重定向URI”，确认无误后，向app发送访问令牌（access token）和更新令牌（refresh token）。
+认证服务器核对了授权码和”重定向URI”，确认无误后，向app发送访问令牌（access token）、id_token和更新令牌（refresh token）。
 
 返回JSON包体：
 
