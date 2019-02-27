@@ -55,7 +55,7 @@ participant 工业云平台
 用户在第三方应用上发起登录，第三方应用将用户导向工业云平台单点登录页
 
 ```
-https://129.211.44.155:9092/login?login_appid={login_appid}&redirect_uri={redirect_uri}&scope=all&state={state}
+http://129.211.44.155:9092/login?login_appid={login_appid}&redirect_uri={redirect_uri}&scope=all&state={state}
 ```
 
 | 参数  | 含义 | 是否必填 |
@@ -63,7 +63,7 @@ https://129.211.44.155:9092/login?login_appid={login_appid}&redirect_uri={redire
 | login_appid | 第三方应用的login_appid | 是 |
 | scope | 授权范围，值："all" | 是 |
 | redirect_uri | 授权成功重定向地址 | 是 |
-| state | 第三方应用填写，工业云平台在回跳redirect_uri时会原样返回，用于防CSRF攻击 | 否 |
+| state | 第三方应用填写，工业云平台在回跳redirect_uri时会原样返回，用于防CSRF攻击 | 是 |
 
 **第2步详解**
 
@@ -88,7 +88,7 @@ Location: {REDIRECT_URI}?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz
 请求方式GET
 
 ```
-http://129.211.44.155:8088/oauth/token?grant_type=authorization_code&code={code}&redirect_uri={redirect_uri}&login_appid={login_appid}&login_appsecret={login_appsecret}
+http://129.211.44.155:8088/api/v1/oauth/token?grant_type=authorization_code&code={code}&redirect_uri={redirect_uri}&login_appid={login_appid}&login_appsecret={login_appsecret}
 ```
 
 | 参数 | 含义 | 是否必填 |

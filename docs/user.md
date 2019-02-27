@@ -7,7 +7,7 @@
 请求方式GET
 
 ```
-http://129.211.44.155:8088/user/{userid}?access_token=ACCESS_TOKEN
+http://129.211.44.155:8088/api/v1/user/{userid}?access_token=ACCESS_TOKEN
 ```
 
 返回包体
@@ -46,7 +46,7 @@ http://129.211.44.155:8088/user/{userid}?access_token=ACCESS_TOKEN
 https请求方式POST
 
 ```
-http://129.211.44.155:8088/users?access_token=ACCESS_TOKEN
+http://129.211.44.155:8088/api/v1/users?access_token=ACCESS_TOKEN
 ```
 
 请求JSON包体
@@ -77,13 +77,13 @@ http://129.211.44.155:8088/users?access_token=ACCESS_TOKEN
             "Tel": "18902387651", // 电话
             "Email": "eux@hotmail.com", // email
             "Id": "id", // 身份证号,
-            "State": 0, // 0: 未实名认证，1： 已实名认证
-              ...
+            "Status": 0, // 0: 未实名认证，1： 已实名认证
             "Roles": [
                 {
                     "CorpId": "corpid1", // 用户所属企业的id
                     "Role": 0 // 用户角色：1: 企业管理员，0: 企业普通用户
                 },
+                ...
             ]
         }, 
     ]
