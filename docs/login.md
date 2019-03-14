@@ -108,13 +108,13 @@ http://129.211.44.155:8088/api/v1/oauth/token?grant_type=authorization_code&code
 
 ```
 {
-    "code" : 0,
-    "msg" : "ok",
+    "Code" : 0,
+    "Msg" : "ok",
     "access_token": "access_token",
     "token_type": "Bearer",
     "refresh_token": "5VO-NEIVVQAMV9KXP_VPNA",
     "id_token": "xxxx.yyyy.zzzz",
-    "expires_in": "2018-11-13T12:21:38.655826+08:00"
+    "expires_in": 86400,
     "user_id": "userid"
 }
 ```
