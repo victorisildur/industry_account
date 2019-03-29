@@ -142,7 +142,7 @@ participant 工业云平台
 
 ### 3.1 方案一 单点登录session维护登录状态
 
-1. 登录
+(1) 登录
 
 ```sequence
 participant 用户
@@ -161,7 +161,7 @@ participant 寄云Boss
 
 > 如果用户先登录寄云Boss，再跳转门户，与上述过程类似，不再重复
 
-2. 退出登录
+(2) 退出登录
 
 ```sequence
 participant 用户
@@ -180,9 +180,9 @@ participant 寄云Boss
 
 > 如果用户先退出寄云Boss，再跳转门户. 需寄云侧清空cookie，其余过程与上述过程类似，不再重复
 
-## 方案二： localStorage存储access_token
+### 方案二： localStorage存储access_token
 
-登录：
+**(1) 登录**
 
 ```sequence
 participant 用户
@@ -197,7 +197,9 @@ participant 寄云Boss
 寄云Boss->寄云Boss: 检查localStorage，拿到access_token，直接使用
 ```
 
-退出登录：
+> 如果用户先在寄云Boss登录，由寄云保存access_token到localStorage，其余类似
+
+**(2) 退出登录**
 
 ```sequence
 participant 用户
@@ -213,3 +215,5 @@ participant 寄云Boss
 用户->单点登录页: 输入账号密码，点击登录
 单点登录页->寄云Boss: 回到寄云redirect_uri, 附code(用户换access_token)
 ```
+
+> 如果用户先在寄云Boss退出登录，由寄云清空localStorage，其余类似
