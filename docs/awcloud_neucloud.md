@@ -137,3 +137,79 @@ participant 工业云平台
 海云-->寄云Boss: 操作状态
 寄云Boss->寄云Boss: 更新状态
 ```
+
+## 3. 门户、寄云同步登录、退出登录
+
+### 3.1 方案一 单点登录session维护登录状态
+
+1. 登录
+
+```sequence
+participant 用户
+participant 门户
+participant 单点登录页
+participant 寄云Boss
+
+用户->门户: 点击登录按钮
+门户->单点登录页: 跳转
+单点登录页->门户: 成功登录，并保存用户已登录状态到门户域session
+用户->寄云Boss: 点击进入寄云控制台
+寄云Boss->单点登录页: 跳转
+单点登录页->单点登录页: 从session知用户已登录, 自动登录
+单点登录页->寄云Boss: 回到寄云redirect_uri, 附code(用户换access_token)
+```
+
+> 如果用户先登录寄云Boss，再跳转门户，与上述过程类似，不再重复
+
+2. 退出登录
+
+```sequence
+participant 用户
+participant 门户
+participant 单点登录页
+participant 寄云Boss
+
+用户->门户: 点击退出登录按钮
+门户->门户: 清空cookie
+用户->寄云Boss: 点击进入寄云控制台
+寄云Boss->单点登录页: 跳转
+单点登录页->单点登录页: 新session，没有登录状态
+用户->单点登录页: 输入账号密码，点击登录
+单点登录页->寄云Boss: 回到寄云redirect_uri, 附code(用户换access_token)
+```
+
+> 如果用户先退出寄云Boss，再跳转门户. 需寄云侧清空cookie，其余过程与上述过程类似，不再重复
+
+## 方案二： localStorage存储access_token
+
+登录：
+
+```sequence
+participant 用户
+participant 门户
+participant 单点登录页
+participant 寄云Boss
+
+用户->门户: 点击登录按钮
+门户->单点登录页: 跳转
+单点登录页->门户: 成功登录，保存access_token到localStorage
+用户->寄云Boss: 点击进入寄云控制台
+寄云Boss->寄云Boss: 检查localStorage，拿到access_token，直接使用
+```
+
+退出登录：
+
+```sequence
+participant 用户
+participant 门户
+participant 单点登录页
+participant 寄云Boss
+
+用户->门户: 点击退出登录按钮
+门户->门户: 清空localStorage
+用户->寄云Boss: 点击进入寄云控制台
+寄云Boss->寄云Boss: 检查localStorage，发现空
+寄云Boss->单点登录页: 跳转到单点登录页
+用户->单点登录页: 输入账号密码，点击登录
+单点登录页->寄云Boss: 回到寄云redirect_uri, 附code(用户换access_token)
+```
