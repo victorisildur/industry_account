@@ -124,7 +124,7 @@ CLIENT_SUBSCRIBE_URI
             ]
         },
         {
-            "ChangeType": "Modify", // 修改一个user
+            "ChangeType": "modify", // 修改一个user
             "UserId": "userid",
             "Name": "name",
             "Gender": 1,
@@ -158,3 +158,29 @@ CLIENT_SUBSCRIBE_URI
 
 > 前置要求： 应用为工业云内部应用，且已注册订阅URI
 
+## 异步通知工业云用户是否可删除
+
+请求方式POST
+
+```
+http://129.211.44.155:8088/api/v1/subscribe_notification?signature={sign}
+```
+
+请求包体
+
+```
+{
+    "Code": 0,
+    "Msg": "不能删除用户: 用户xxx拥有产品xxx权限",
+    "Type": "DeleteUser",
+    "UserId": "userid",
+}
+```
+
+| 字段 | 类型 | 说明 |
+| -- | -- | -- |
+| Code | int | 错误码, 0为成功，其他为错误 |
+| Msg | string | 失败提示 |
+| Type | string | "DeleteUser" 删除用户 |
+| UserId | string | 所删除的用户id |
+| signature | string | 签名，用于验证请求来自寄云（而不是攻击者）|
