@@ -25,7 +25,8 @@ http://129.211.44.155:8088/api/v1/user/{userid}?access_token=ACCESS_TOKEN
             "CorpId": "corpid1", 
             "Role": "admin"
         }...
-    ]
+    ],
+    "UserRole": 0, 
 }
 ```
 
@@ -40,6 +41,7 @@ http://129.211.44.155:8088/api/v1/user/{userid}?access_token=ACCESS_TOKEN
 | Roles | array | 用户企业角色列表（用户可能属于多个企业） |
 | CorpId | string | 企业 id |
 | Role | int | 用户在企业里的角色：1: 企业管理员，0: 企业普通用户 |
+| UserRole | int | 0普通用户 10管理员（运营商或超级管理员) |
 
 ## 获取用户详情列表
 
