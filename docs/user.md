@@ -158,29 +158,40 @@ CLIENT_SUBSCRIBE_URI
 
 > 前置要求： 应用为工业云内部应用，且已注册订阅URI
 
-## 异步通知工业云用户是否可删除
+## 通知云平台用户删除状态
 
 请求方式POST
 
 ```
-http://129.211.44.155:8088/api/v1/subscribe_notification?signature={sign}
+POST 10.1.1.17/api3
+
+X-TC-Action NotifyUserDelStage
+X-TC-Version v1
+X-TC-Timestamp 1556977841
+X-TC-Region hz
+Authorization xyz
 ```
+
+> 特殊头部是用于验证请求来自寄云，而不是第三方攻击者。头部生成规则与腾讯云API3.0完全一致，头部的生成有python示例:
+> 1. 查看企业秘钥对SECRET_ID, SECRET_KEY，前往查看[企业秘钥对](http://10.1.1.17/cp/identity/corp")
+> 2. 下载客户端sdk，前往[下载算法市场sdk]("https://github.com/XWSTeam/cloudindustry-algo-sdk")，使用sdk生成api3.0规范的头部
 
 请求包体
 
-```
+```json
 {
-    "Code": 0,
-    "Msg": "不能删除用户: 用户xxx拥有产品xxx权限",
-    "Type": "DeleteUser",
-    "UserId": "userid",
+    "Code": -1,
+    "UserId": "id",
+    "ErrMsg": "内部错误消息",
+    "Msg": "删除用户失败，用户正在使用app xyz"
 }
 ```
 
-| 字段 | 类型 | 说明 |
-| -- | -- | -- |
-| Code | int | 错误码, 0为成功，其他为错误 |
-| Msg | string | 失败提示 |
-| Type | string | "DeleteUser" 删除用户 |
-| UserId | string | 所删除的用户id |
-| signature | string | 签名，用于验证请求来自寄云（而不是攻击者）|
+返回包体
+
+```json
+{
+    "Code": 0,
+    "Msg": "ok"
+}
+```
