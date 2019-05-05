@@ -172,9 +172,10 @@ X-TC-Region hz
 Authorization xyz
 ```
 
-> 特殊头部是用于验证请求来自寄云，而不是第三方攻击者。头部生成规则与腾讯云API3.0完全一致，头部的生成有python示例:
-> 1. 查看企业秘钥对SECRET_ID, SECRET_KEY，前往查看[企业秘钥对](http://10.1.1.17/cp/identity/corp")
-> 2. 下载客户端sdk，前往[下载算法市场sdk]("https://github.com/XWSTeam/cloudindustry-algo-sdk")，使用sdk生成api3.0规范的头部
+特殊头部是用于验证请求来自寄云，而不是第三方攻击者。头部生成规则与腾讯云API3.0完全一致，头部的生成有python示例，生成方法如下:
+
+1. 查看企业秘钥对SECRET_ID, SECRET_KEY，前往查看[企业秘钥对](http://10.1.1.17/cp/identity/corp")
+2. 下载客户端sdk，前往[下载算法市场sdk]("https://github.com/XWSTeam/cloudindustry-algo-sdk")，使用sdk生成api3.0规范的头部
 
 请求包体
 
