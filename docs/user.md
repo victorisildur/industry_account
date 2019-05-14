@@ -142,6 +142,11 @@ CLIENT_SUBSCRIBE_URI
         {
             "ChangeType": "delete", //删除一个user
             "UserId": "userid",
+        },
+        {
+            "ChangeType": "deleteCorpUser", // 从企业移出user
+            "DelUserId": "userid", // 要移出的userid
+            "CorpId": "corpid", // 移出的corpid
         }
     ]
 }
@@ -183,6 +188,7 @@ Authorization xyz
 {
     "Code": -1,
     "UserId": "id",
+    "CorpId": "id",
     "ErrMsg": "内部错误消息",
     "Msg": "删除用户失败，用户正在使用app xyz"
 }
