@@ -13,7 +13,7 @@
 ## 1. 接入登录
 
 1. 首先，从工业云开发处获得postman接口调用集
-2. 浏览器访问单点登录页[http://129.211.44.155:9092/login?login_appid=1941e3552b37c15d8ba2&redirect_uri={redirect_uri}/identity&response_type=code&scope=all&state=xyz](http://129.211.44.155:9092/login?login_appid=1941e3552b37c15d8ba2&redirect_uri={redirect_uri}&response_type=code&scope=all&state=xyz)，其中{redirect_uri}填入自己的一个地址，用于接收授权码code
+2. 浏览器访问单点登录页[http://212.64.78.186/sso/login?login_appid=7c63c90d27e1e5bc86e0&redirect_uri={redirect_uri}/identity&response_type=code&scope=all&state=xyz](http://212.64.78.186/sso/login?login_appid=7c63c90d27e1e5bc86e0&redirect_uri={redirect_uri}&response_type=code&scope=all&state=xyz)，其中{redirect_uri}填入自己的一个地址，用于接收授权码code
 3. 浏览器中输入测试账号密码victorisildur@163.com:12345678。或者用手机号自行注册一个用户(推荐，测试账号多人使用会刷新token，使得token失效)，点击登录，浏览器将最终重定向到redirect_uri，并附参数code
 4. 复制code，在postman调用示例里找到"code换access_token"示例，将参数中的code和redirect_uri换成2~3步中的值，发送请求，返回access_token, id_token, user_id
 5. 真实接入中，code换access_token的过程应由redirect_uri发起，这里postman示例仅做演示
