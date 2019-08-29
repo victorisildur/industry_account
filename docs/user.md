@@ -7,7 +7,7 @@
 请求方式GET
 
 ```
-http://129.211.44.155:8088/api/v1/user/{userid}?access_token=ACCESS_TOKEN
+http://{CloudIndustryHost}/iam/api/v1/user/{userid}?access_token=ACCESS_TOKEN
 ```
 
 返回包体
@@ -48,7 +48,7 @@ http://129.211.44.155:8088/api/v1/user/{userid}?access_token=ACCESS_TOKEN
 https请求方式POST
 
 ```
-http://129.211.44.155:8088/api/v1/users?access_token=ACCESS_TOKEN
+http://{CloudIndustryHost}/iam/api/v1/users?access_token=ACCESS_TOKEN
 ```
 
 请求JSON包体
@@ -79,7 +79,7 @@ http://129.211.44.155:8088/api/v1/users?access_token=ACCESS_TOKEN
             "Tel": "18902387651", // 电话
             "Email": "eux@hotmail.com", // email
             "Id": "id", // 身份证号,
-            "Status": 0, // 0: 未实名认证，1： 已实名认证
+            "Status": 0, // 0:账户未激活,1:账户已激活,2:账户认证中,3:账户认证通过,4:账户认证拒绝
             "Roles": [
                 {
                     "CorpId": "corpid1", // 用户所属企业的id
@@ -131,7 +131,7 @@ CLIENT_SUBSCRIBE_URI
             "Tel": "tel",
             "Email": "email"
             "Id": "id", // 身份证号,
-            "State": 0, // 0: 未实名认证，1： 已实名认证
+            "Status": 0, // 0:账户未激活,1:账户已激活,2:账户认证中,3:账户认证通过,4:账户认证拒绝
             "Roles": [
                 {
                     "CorpId": "corpid",

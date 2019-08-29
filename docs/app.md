@@ -7,7 +7,7 @@
 https请求方式POST
 
 ```
-http://129.211.44.155:8088/api/v1/login_app?access_token={access_token}
+http://{CloudIndustryHost}/iam/api/v1/login_app?access_token={access_token}
 ```
 
 请求JSON说明
@@ -39,7 +39,7 @@ http://129.211.44.155:8088/api/v1/login_app?access_token={access_token}
 https请求方式DELETE
 
 ```
-http://129.211.44.155:8088/api/v1/login_app/{login_appid}?access_token={access_token}
+http://{CloudIndustryHost}/iam/api/v1/login_app/{login_appid}?access_token={access_token}
 ```
 
 返回说明
@@ -57,7 +57,7 @@ http://129.211.44.155:8088/api/v1/login_app/{login_appid}?access_token={access_t
 https请求方式POST
 
 ```
-http://129.211.44.155:8088/api/v1/login_app/{login_appid}/users?access_token={access_token}
+http://{CloudIndustryHost}/iam/api/v1/login_app/{login_appid}/users?access_token={access_token}
 ```
 
 

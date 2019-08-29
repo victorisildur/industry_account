@@ -55,7 +55,7 @@ participant 工业云平台
 用户在第三方应用上发起登录，第三方应用将用户导向工业云平台单点登录页
 
 ```
-http://129.211.44.155:9092/login?login_appid={login_appid}&redirect_uri={redirect_uri}&scope=all&state={state}
+http://{CloudIndustryHost}/sso/login?login_appid={login_appid}&redirect_uri={redirect_uri}&scope=all&state={state}
 ```
 
 | 参数  | 含义 | 是否必填 |
@@ -88,7 +88,7 @@ Location: {REDIRECT_URI}?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz
 请求方式GET
 
 ```
-http://129.211.44.155:8088/api/v1/oauth/token?grant_type=authorization_code&code={code}&redirect_uri={redirect_uri}&login_appid={login_appid}&login_appsecret={login_appsecret}
+http://{CloudIndustryHost}/iam/api/v1/oauth/token?grant_type=authorization_code&code={code}&redirect_uri={redirect_uri}&login_appid={login_appid}&login_appsecret={login_appsecret}
 ```
 
 | 参数 | 含义 | 是否必填 |

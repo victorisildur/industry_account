@@ -7,7 +7,7 @@
 请求方式POST
 
 ```
-http://129.211.44.155:8088/api/v1/corps?access_token=ACCESS_TOKEN
+http://{CloudIndustryHost}/iam/api/v1/corps?access_token=ACCESS_TOKEN
 ```
 
 
@@ -51,7 +51,7 @@ http://129.211.44.155:8088/api/v1/corps?access_token=ACCESS_TOKEN
 请求方式GET
 
 ```
-http://129.211.44.155:8088/api/v1/corp/{corpid}/users?access_token={access_token}&offset=0&size=100&real_mode={mode}&search_key={key}
+http://{CloudIndustryHost}/iam/api/v1/corp/{corpid}/users?access_token={access_token}&offset=0&size=100&real_mode={mode}&search_key={key}
 ```
 
 | 参数名称 | 必选 | 类型 | 描述 |
