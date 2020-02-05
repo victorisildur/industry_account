@@ -96,3 +96,28 @@ https://{CloudIndustryHost}/iam/api/v1/wx/bind_mobile
 |  UserId | 是 | 手机号对应的工业云user id|
 |  CorpId | 是 | 手机号对应的工业云corp id|
 |  AccessToken | 是 | 手机号对应的工业云access token|
+
+## 1.4 更新企业信息
+
+请求方式PUT
+
+```
+https://{CloudIndustryHost}/iam/api/v1/corp/{corpId}
+```
+
+请求包体
+
+```json
+{
+    "Name": "企业名称",
+    "Contact": "联系人名称",
+    "Tel": "13700000000"
+}
+```
+
+| 参数名称 | 必选  | 描述 |
+| --- | --- | --- |
+| Name | 是 | 企业名称 |
+| Contact | 是 | 联系人姓名 |
+| Tel | 是  | 联系电话 |
+
