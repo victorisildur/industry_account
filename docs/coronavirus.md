@@ -121,3 +121,47 @@ https://{CloudIndustryHost}/iam/api/v1/corp/{corpId}
 | Contact | 是 | 联系人姓名 |
 | Tel | 是  | 联系电话 |
 
+## 1.5 读企业信息
+
+请求方式POST
+
+```
+http://{CloudIndustryHost}/iam/api/v1/corps?access_token=ACCESS_TOKEN
+```
+
+
+
+请求JSON包体
+
+```
+{
+    "CorpIds": ["corp id"]
+}
+```
+
+| 参数名称 | 必选  | 描述 |
+| --- | --- | --- |
+| CorpIds | 是   | 企业的id列表，最多不能超过50个|
+
+返回JSON包体
+
+```
+{
+   "Code" : 0,
+   "Msg" : "ok",
+   "Corps": [
+        {
+            "CorpId": "id",
+            "Name": "name",
+            "Tel": "tel",
+            "Contact": "contact",
+        }
+   ]
+}
+```
+
+| 参数名称 | 必选  | 描述 |
+| --- | --- | --- |
+| Name | 否 | 企业名称 |
+| Tel | 否 | 联系电话 |
+| Contact | 否 | 联系人姓名 |
