@@ -111,7 +111,7 @@ https://{CloudIndustryHost}/iam/api/v1/wx/bind_mobile
 请求方式PUT
 
 ```
-https://{CloudIndustryHost}/iam/api/v1/corp/{corpId}
+https://{CloudIndustryHost}/iam/api/v1/corp/{corpId}?access_token={access token}
 ```
 
 请求包体
@@ -126,6 +126,7 @@ https://{CloudIndustryHost}/iam/api/v1/corp/{corpId}
 
 | 参数名称 | 必选  | 描述 |
 | --- | --- | --- |
+| access_token | 是 | 工业云access token |
 | Name | 是 | 企业名称 |
 | Contact | 是 | 联系人姓名 |
 | Tel | 是  | 联系电话 |
@@ -177,3 +178,174 @@ http://{CloudIndustryHost}/iam/api/v1/corps?access_token=ACCESS_TOKEN
 | Tel | 否 | 联系电话 |
 | Contact | 否 | 联系人姓名 |
 
+## 2.3 投标（我要供货)
+
+请求方式POST
+
+```
+https://{CloudIndustryHost}/asm/api/do_bid?access_token={access token}
+```
+
+请求包体
+
+```json
+{
+    "DemandId": "xxx", //需求id
+    "ServiceCorpId":"123", //投标商企业id
+    "ServicePrice":20.5, //服务报价（单位元）
+    "ServiceNum": 200000, //数量
+    "ServiceDescription": "xxx", //服务描述
+    "ServicePhoneNum":"18824909432"//投标商联系方式
+}
+```
+
+| 参数名 | 是否必填 | 说明 |
+| ------ | ------ | ------ |
+| DemandId | 是 | 需求id |
+| ServiceCorpId | 是 | 投标商企业id |
+| ServicePrice | 是 | 服务报价（单位元）|
+| ServiceNum | 是 | 数量 |
+| ServiceDescription | 是 | 服务描述 |
+| ServicePhoneNum | 是 | 投标商联系方式 |
+
+返回包体
+
+```json
+{
+    "Code": 0,
+    "Msg": ""
+}
+```
+
+## 2.4 读已投标列表
+
+请求方式POST
+
+```
+/api/bid_list?access_token={access_token}
+```
+
+请求包体
+
+```json
+{
+    "Filters": [
+        {
+            "Name": "demand_id",//需求id字段
+            "Op": "in", //需求
+            "Values": [
+                "12341",
+                "12342",
+                "12344"
+            ]
+        }
+    ],
+    "Sorts": [//排序
+        {
+            "Name": "demand_rating",//排序字段
+            "OrderBy": "desc"//默认asc生序，desc降序
+        }
+    ],
+    "PageSize": 10,
+    "Offset": 4
+}
+```
+
+| 参数名 | 是否必填 | 说明 | 类型 |
+| ------ | ------ | ------ | --- |
+| Filters | 否 | 过滤条件(如果是sp)，可以为空，如果是cp不能为空 | object array |
+| Sorts | 否 | 排序条件 | object array |
+| PageSize | 否 | 分页查找一次获取的数量 | int |
+| Offset | 否 | 分页查找起始位置 | int |
+
+过滤条件Sorts说明
+
+| 参数名 | 是否必填 | 说明 |
+| ------ | ------ | ------ |
+| Name | 是 | 字段名 |
+| OrderBy | 是 | 排序方式支持降序和升序："desc"、"asc" |
+
+过滤条件Filters说明
+
+| 参数名 | 是否必填 | 说明 |
+| ------ | ------ | ------ |
+| Name | 是 | 字段名 |
+| Op | 是 | 比较方式 |
+| Values | 是 | 取值列表，字符串数组 |
+
+投标字段名Name说明
+	
+| 取值 |  说明 |
+| ------ |------ |
+| created_at | 投标信息创建时间 | 
+| bid_id | 创建该需求的企业ID | 
+| bid_status | 投标状态 |
+| demand_id | 需求id |
+| demand_rating | 需求评分 |
+| demand_comment | 需求评价信息 |
+| service_corp_id | 投标商企业id |
+| service_price | 服务报价（单位元）|
+| service_period | 服务周期（单位月）|
+| service_description | 服务描述 |
+| service_doc | 服务相关文档 | 
+| service_rating | 服务商评分 |
+| service_comment | 服务商评价信息 |
+
+比较方式说明：
+
+| 取值 |  说明 |
+| ------ |------ |
+| > |  | 
+| < |  | 
+| >= |  | 
+| <= |  | 
+| == |  | 
+| like | 数据库操作：类似于 | 
+| in | 处于Values列表中的值 | 
+| neq | 仅用于比较数字，不等于 | 
+| != | 仅用于比较数字，不等于 | 
+
+
+返回包体
+
+```json
+{
+    "Code": 0,
+    "Msg": "成功",
+    "Total": 3,
+    "Infos": [
+        {
+            "CreatedAt": "1550720866",
+            "BidId": "15507208663542",
+            "DemandId": "12341",
+            "DemandRating": 5,
+            "ServiceCorpId": "133334",
+            "ServiceCorpName": "xxx",
+            "ServiceCorpLogo": "xxx", // 服务商logo
+            "ServicePrice": 23.3,
+            "ServicePeriod": 30,
+            "ServicePeriodUint": 1,
+            "ServiceDescription": "投标了",
+            "ServiceDoc": "",
+            "Rating": 4,
+            "BidStatus": 0,
+	        "Guarantee": {
+	            "RealNameAuthStatus": 2,
+	            "OfflineCertStatus": 0,
+	            "EarnestMoneyStatus": 0
+	        },
+        },
+    ]
+}
+```
+
+| 参数名 | 基础字段 | 说明 |
+| ------ | ------ | ------ |
+| Code | 是 | 错误码 |
+| Msg | 是 | 错误说明 |
+| Infos | 否 | 需求列表 |
+| Total | 是 | 符合条件的总数量，分页的时候可能用来判断是否有更多 |
+| Guarantee | 企业保障认证信息 |  |
+|     RealNameAuthStatus | int | 企业实名认证状态 1 审核中 2 审核通过 3 审核拒绝 |
+|     OfflineCertStatus | int | 申请线下认证状态 1 审核中 2 审核通过 3 审核拒绝 |
+|     EarnestMoneyStatus | int | 申请缴纳保证金状态 1 审核中 2 审核通过 3 审核拒绝 |
