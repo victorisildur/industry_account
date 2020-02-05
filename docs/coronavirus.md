@@ -23,4 +23,76 @@ https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=RED
 用户同意授权后
 如果用户同意授权，页面将跳转至 `redirect_uri/?code=CODE&state=STATE`
 
-## 1.2 用户同意授权后
+## 1.2 查询用户信息
+
+请求方式GET
+
+```
+https://{CloudIndustryHost}/iam/api/v1/wx/get_user_info?code={code}
+```
+
+| 参数 | 必选 | 含义 |
+| -- | ---- | ---- |
+| code | 否 | 1.1中获取的微信授权码 |
+
+返回包体
+
+```json
+{
+    "Code": 0,
+    "Msg": "ok",
+    "OpenId": "open id",
+    "CorpId": "corp id",
+    "UserId": "user id",
+    "AccessToken": "access token"
+}
+```
+
+| 参数 | 必选 | 含义 |
+| ---- | --- | --- |
+| OpenId | 是 | 用户微信open id |
+| UserId | 是 | 工业云用户id |
+| CorpId | 是 | 工业云企业id |
+| AccessToken | 是 | 用户在工业云的access token |
+
+## 1.3 绑定手机和微信
+
+请求方式POST
+
+```
+https://{CloudIndustryHost}/iam/api/v1/wx/bind_mobile
+```
+
+请求包体
+
+```json
+{
+    "OpenId": "open id",
+    "Mobile": "13700000000",
+    "Ticket": "123456"
+}
+```
+
+| 参数名称 | 必选  | 描述 |
+| --- | --- | --- |
+| OpenId | 是 | 微信OpenId |
+| Mobile | 是 | 手机号 |
+| Ticket | 是 | 6位短信验证码 |
+
+返回包体
+
+```json
+{
+    "Code": 0,
+    "Msg": "",
+    "UserId": "user id",
+    "CorpId": "corp id",
+    "AccessToken": "access token"
+}
+```
+
+| 参数 | 必选 | 含义 |
+| ---- | --- | --- |
+|  UserId | 是 | 手机号对应的工业云user id|
+|  CorpId | 是 | 手机号对应的工业云corp id|
+|  AccessToken | 是 | 手机号对应的工业云access token|
