@@ -1,6 +1,6 @@
 [TOC]
 
-# 1 微信授权相关
+# 1 微信授权场景
 
 ## 1.1 请求用户微信授权
 
@@ -57,6 +57,8 @@ https://{CloudIndustryHost}/iam/api/v1/wx/get_user_info?code={code}
 
 ## 1.3 绑定手机和微信
 
+> 对防疫场景，仅需求方（医院侧）需要
+
 请求方式POST
 
 ```
@@ -93,11 +95,18 @@ https://{CloudIndustryHost}/iam/api/v1/wx/bind_mobile
 
 | 参数 | 必选 | 含义 |
 | ---- | --- | --- |
+| Code | 是 | 0: 成功, 非0: 失败 |
 |  UserId | 是 | 手机号对应的工业云user id|
 |  CorpId | 是 | 手机号对应的工业云corp id|
 |  AccessToken | 是 | 手机号对应的工业云access token|
 
-## 1.4 更新企业信息
+> 异常情况：该手机号未在工业云注册过，则需前端提示医院侧前往sidacloud.com进行注册、需求发布
+
+# 2. 我要供货场景
+
+## 2.1 更新企业信息
+
+> 供货方调用
 
 请求方式PUT
 
@@ -121,7 +130,9 @@ https://{CloudIndustryHost}/iam/api/v1/corp/{corpId}
 | Contact | 是 | 联系人姓名 |
 | Tel | 是  | 联系电话 |
 
-## 1.5 读企业信息
+## 2.2 读企业信息
+
+> 供货方调用
 
 请求方式POST
 
@@ -165,3 +176,4 @@ http://{CloudIndustryHost}/iam/api/v1/corps?access_token=ACCESS_TOKEN
 | Name | 否 | 企业名称 |
 | Tel | 否 | 联系电话 |
 | Contact | 否 | 联系人姓名 |
+
