@@ -2,7 +2,27 @@
 
 # 1 微信授权场景
 
-## 1.1 请求用户微信授权
+## 1.0 小程序登录
+
+请求方式POST
+
+```
+https://{CloudIndustryHost}/iam/api/v1/wx/login
+```
+
+请求包体
+
+```json
+{
+    "WxCode": "code"
+}
+```
+
+| 参数名称 | 必选  | 描述 |
+| --- | --- | --- |
+| WxCode | 是 | wx.login获取到的code, 详见[小程序登录](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html) |
+
+## 1.1 请求用户微信授权(h5用，废弃)
 
 页面重定向至
 
@@ -23,7 +43,11 @@ https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=RED
 用户同意授权后
 如果用户同意授权，页面将跳转至 `redirect_uri/?code=CODE&state=STATE`
 
-## 1.2 查询用户信息
+## 1.1a 请求用户微信授权
+
+详见[小程序授权](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/authorize.html)
+
+## 1.2 查询用户信息(h5用，废弃)
 
 请求方式GET
 
@@ -54,6 +78,10 @@ https://{CloudIndustryHost}/iam/api/v1/wx/get_user_info?code={code}
 | UserId | 是 | 工业云用户id |
 | CorpId | 是 | 工业云企业id |
 | AccessToken | 是 | 用户在工业云的access token |
+
+## 1.2a 查询用户信息
+
+详见[小程序获取用户信息](https://developers.weixin.qq.com/miniprogram/dev/api/open-api/user-info/wx.getUserInfo.html)
 
 ## 1.3 绑定手机和微信
 
