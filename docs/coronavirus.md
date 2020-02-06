@@ -387,7 +387,7 @@ https://{CloudIndustryHost}/asm/api/do_bid?access_token={access token}
 请求方式GET
 
 ```
-https://{CloudIndustryHost}/asm/colla_category/:CategoryID?access_token={token}&Depth=2
+https://{CloudIndustryHost}/asm/api/colla_category/:CategoryID?access_token={token}&Depth=2
 ```
 
 | 参数名 | 是否必填 | 说明 |
@@ -435,7 +435,7 @@ https://{CloudIndustryHost}/asm/colla_category/:CategoryID?access_token={token}&
 请求方式GET
 
 ```
-https://{CloudIndustryHost}/asm/colla_demands?access_token={token}
+https://{CloudIndustryHost}/asm/api/colla_demands?access_token={token}
 ```
 
 查询需求的时候有两种查询方式，需要带的参数都是不同的，如下表：
@@ -612,7 +612,7 @@ type Filter struct {
 请求方式GET
 
 ```
-https://{CloudIndustryHost}/asm/colla_released_demands?access_token={token}
+https://{CloudIndustryHost}/asm/api/colla_released_demands?access_token={token}
 ```
 
 查询需求列表的时候可以加过滤条件：
@@ -708,7 +708,7 @@ https://{CloudIndustryHost}/asm/colla_released_demands?access_token={token}
 请求方式 POST
 
 ```
-https://{CloudIndustryHost}/asm/msgboard/msg?access_token={{access_token}}
+https://{CloudIndustryHost}/asm/api/msgboard/msg?access_token={{access_token}}
 ```
 
 请求参数
@@ -765,7 +765,7 @@ https://{CloudIndustryHost}/asm/msgboard/msg?access_token={{access_token}}
 请求方式 PUT
 
 ```
-https://{CloudIndustryHost}/asm/msgboard/msg?access_token={{access_token}}
+https://{CloudIndustryHost}/asm/api/msgboard/msg?access_token={{access_token}}
 ```
 
 请求参数
@@ -814,14 +814,14 @@ https://{CloudIndustryHost}/asm/msgboard/msg?access_token={{access_token}}
 
 ```
 GET
-https://{CloudIndustryHost}/asm/msgboard/commentlist?access_token={{access_token}}&Resource={{Resource}}&Module={{Module}}&WithReply={{WithReply}}&Offset={{Offset}}&Page={{Page}}&OrderType={{OrderType}}
+https://{CloudIndustryHost}/asm/api/msgboard/commentlist?access_token={{access_token}}&Resource={{Resource}}&Module={{Module}}&WithReply={{WithReply}}&Offset={{Offset}}&Page={{Page}}&OrderType={{OrderType}}
 ```
 
 请求参数
 
 ```
 GET 
-https://{CloudIndustryHost}/asm/msgboard/commentlist?access_token={{access_token}}&Resource=blog001&Module=工业社区&WithReply=5&Offset=0&Page=10&OrderType=0
+https://{CloudIndustryHost}/asm/api/msgboard/commentlist?access_token={{access_token}}&Resource=blog001&Module=工业社区&WithReply=5&Offset=0&Page=10&OrderType=0
 ```
 
 **参数说明**
@@ -917,14 +917,14 @@ https://{CloudIndustryHost}/asm/msgboard/commentlist?access_token={{access_token
 
 ```
 GET 
-https://{CloudIndustryHost}/asm/msgboard/replylist?access_token={{access_token}}&CommentID={{CommentID}}&Offset={{Offset}}&Page={{Page}}&OrderType={{OrderType}}
+https://{CloudIndustryHost}/asm/api/msgboard/replylist?access_token={{access_token}}&CommentID={{CommentID}}&Offset={{Offset}}&Page={{Page}}&OrderType={{OrderType}}
 ```
 
 请求参数 (示例)
 
 ```
 GET
-https://{CloudIndustryHost}/asm/msgboard/replylist?access_token={{access_token}}&CommentID=100&Offset=0&Page=10&OrderType=1
+https://{CloudIndustryHost}/asm/api/msgboard/replylist?access_token={{access_token}}&CommentID=100&Offset=0&Page=10&OrderType=1
 ```
 
 **参数说明**
@@ -994,14 +994,14 @@ https://{CloudIndustryHost}/asm/msgboard/replylist?access_token={{access_token}}
 
 ```
 GET 
-https://{CloudIndustryHost}/asm/msgboard/msg?access_token={{access_token}}&ID={{ID}}
+https://{CloudIndustryHost}/asm/api/msgboard/msg?access_token={{access_token}}&ID={{ID}}
 ```
 
 请求参数
 
 ```
 GET 
-https://{CloudIndustryHost}/asm/msgboard/msg?access_token={{access_token}}&ID=100
+https://{CloudIndustryHost}/asm/api/msgboard/msg?access_token={{access_token}}&ID=100
 ```
 
 **参数说明**
@@ -1070,14 +1070,14 @@ https://{CloudIndustryHost}/asm/msgboard/msg?access_token={{access_token}}&ID=10
 
 ```
 DELETE 
-https://{CloudIndustryHost}/asm/msgboard/msg?access_token={{access_token}}&ID={{ID}}
+https://{CloudIndustryHost}/asm/api/msgboard/msg?access_token={{access_token}}&ID={{ID}}
 ```
 
 请求参数
 
 ```
 DELETE 
-https://{CloudIndustryHost}/asm/msgboard/msg?access_token={{access_token}}&ID=100
+https://{CloudIndustryHost}/asm/api/msgboard/msg?access_token={{access_token}}&ID=100
 ```
 
 **参数说明**
