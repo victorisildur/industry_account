@@ -95,34 +95,7 @@ Cookie: sessionid=asfwefbqwbfwqef;
 
 # 2. 我要供货场景
 
-## 2.1 更新企业信息
-
-> 供货方调用
-
-请求方式PUT
-
-```
-https://{CloudIndustryHost}/iam/api/v1/corp/{corpId}?access_token={access token}
-```
-
-请求包体
-
-```json
-{
-    "Name": "企业名称",
-    "Contact": "联系人名称",
-    "Tel": "13700000000"
-}
-```
-
-| 参数名称 | 必选  | 描述 |
-| --- | --- | --- |
-| access_token | 是 | 工业云access token |
-| Name | 是 | 企业名称 |
-| Contact | 是 | 联系人姓名 |
-| Tel | 是  | 联系电话 |
-
-## 2.2 读企业信息
+## 2.1 读企业信息
 
 > 供货方调用
 
@@ -169,34 +142,38 @@ http://{CloudIndustryHost}/iam/api/v1/corps?access_token=ACCESS_TOKEN
 | Tel | 否 | 联系电话 |
 | Contact | 否 | 联系人姓名 |
 
-## 2.3 投标（我要供货)
+## 2.2 供货（我要供货)
 
 请求方式POST
 
 ```
-https://{CloudIndustryHost}/asm/api/do_bid?access_token={access token}
+https://{CloudIndustryHost}/asm/api/supply?access_token={access token}
 ```
 
 请求包体
 
 ```json
 {
+    "Name": "企业名称",
+    "Contact": "联系人名称",
+    "Tel": "13700000000",
     "DemandId": "xxx", //需求id
     "ServiceCorpId":"123", //投标商企业id
     "ServicePrice":20.5, //服务报价（单位元）
     "ServiceNum": 200000, //数量
-    "ServiceDescription": "xxx", //服务描述
     "ServicePhoneNum":"18824909432"//投标商联系方式
 }
 ```
 
 | 参数名 | 是否必填 | 说明 |
 | ------ | ------ | ------ |
+| Name | 是 | 企业名称 |
+| Contact | 是 | 联系人姓名 |
+| Tel | 是  | 联系电话 |
 | DemandId | 是 | 需求id |
 | ServiceCorpId | 是 | 投标商企业id |
 | ServicePrice | 是 | 服务报价（单位元）|
 | ServiceNum | 是 | 数量 |
-| ServiceDescription | 是 | 服务描述 |
 | ServicePhoneNum | 是 | 投标商联系方式 |
 
 返回包体
