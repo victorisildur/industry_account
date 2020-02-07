@@ -22,6 +22,22 @@ https://{CloudIndustryHost}/iam/api/v1/wx/login
 | --- | --- | --- |
 | WxCode | 是 | wx.login获取到的code, 详见[小程序登录](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html) |
 
+返回包体
+
+```json
+{
+    "SessionId": "session id"
+}
+```
+
+返回包头
+
+```
+Set-Cookie: sessionid=abcsdaer;
+```
+
+cookie中的sessionid是会话id，在后端关联了当前会话的openid和session_key。小程序应持久化存储，在后续每次wx.request()时带上。详细说明见[小程序登录](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html)
+
 ## 1.1 请求用户微信授权(h5用，废弃)
 
 页面重定向至
