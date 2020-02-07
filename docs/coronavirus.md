@@ -30,13 +30,8 @@ https://{CloudIndustryHost}/iam/api/v1/wx/login
 }
 ```
 
-返回包头
-
-```
-Set-Cookie: sessionid=abcsdaer;
-```
-
-cookie中的sessionid是会话id，在后端关联了当前会话的openid和session_key。小程序应持久化存储，在后续每次wx.request()时带上。详细说明见[小程序登录](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html)
+> SessionId是会话id，在后端关联了当前会话的openid和session_key。
+> 小程序应持久化存储，在后续每次wx.request()时带上。详细说明见[小程序登录](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html)
 
 ## 1.1 请求用户微信授权(h5用，废弃)
 
@@ -62,6 +57,8 @@ https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=RED
 ## 1.1a 请求用户微信授权
 
 详见[小程序授权](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/authorize.html)
+
+小程序请求授权后，可以拿到用户的nickname，在1.3里一起上报给工业云，换取工业云access token
 
 ## 1.2 查询用户信息(h5用，废弃)
 
@@ -109,13 +106,19 @@ https://{CloudIndustryHost}/iam/api/v1/wx/get_user_info?code={code}
 https://{CloudIndustryHost}/iam/api/v1/wx/bind_mobile
 ```
 
+请求Header
+
+```
+Cookie: sessionid=asfwefbqwbfwqef;
+```
+
 请求包体
 
 ```json
 {
     "OpenId": "open id",
     "Mobile": "13700000000",
-    "Ticket": "123456"
+    "NickName": "张三"
 }
 ```
 
@@ -123,7 +126,7 @@ https://{CloudIndustryHost}/iam/api/v1/wx/bind_mobile
 | --- | --- | --- |
 | OpenId | 是 | 微信OpenId |
 | Mobile | 是 | 手机号 |
-| Ticket | 是 | 6位短信验证码 |
+| NickName | 是 | 昵称 |
 
 返回包体
 
