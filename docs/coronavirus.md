@@ -43,7 +43,6 @@ Set-Cookie: sessionid=wedfapehfawefjae;
 
 ## 1.3 绑定手机、昵称，换取工业云登录态
 
-> 对防疫场景，仅需求方（医院侧）需要
 
 请求方式POST
 
@@ -62,15 +61,16 @@ Cookie: sessionid=asfwefbqwbfwqef;
 ```json
 {
     "EncrptedMobile": "asdfbwuefaoefn",
-    "NickName": "张三"
+    "NickName": "张三",
+    "Iv": "sfasefhapeifja"
 }
 ```
 
 | 参数名称 | 必选  | 描述 |
 | --- | --- | --- |
-| OpenId | 是 | 微信OpenId |
-| EncrptedMobile | 是 | 加密手机号 |
 | NickName | 是 | 昵称 |
+| EncrptedMobile | 是 | 加密手机号 |
+| Iv | 是 | 加密算法初始向量，详见[小程序获取手机号](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html)的返回 |
 
 返回包体
 
@@ -88,7 +88,6 @@ Cookie: sessionid=asfwefbqwbfwqef;
 | ---- | --- | --- |
 | Code | 是 | 0: 成功, 非0: 失败 |
 |  UserId | 是 | 手机号对应的工业云user id|
-|  CorpId | 是 | 手机号对应的工业云corp id|
 |  AccessToken | 是 | 手机号对应的工业云access token|
 
 > 异常情况：该手机号未在工业云注册过，则需前端提示医院侧前往sidacloud.com进行注册、需求发布
