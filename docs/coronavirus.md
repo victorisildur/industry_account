@@ -22,37 +22,14 @@ https://{CloudIndustryHost}/iam/api/v1/wx/login
 | --- | --- | --- |
 | WxCode | 是 | wx.login获取到的code, 详见[小程序登录](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html) |
 
-返回包体
+返回Header
 
-```json
-{
-    "SessionId": "session id"
-}
+```
+Set-Cookie: sessionid=wedfapehfawefjae;
 ```
 
 > SessionId是会话id，在后端关联了当前会话的openid和session_key。
 > 小程序应持久化存储，在后续每次wx.request()时带上。详细说明见[小程序登录](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html)
-
-## 1.1 请求用户微信授权(h5用，废弃)
-
-页面重定向至
-
-```
-https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect
-```
-
-| 参数名称 | 必选  | 描述 |
-| --- | --- | --- |
-| appid | 是 | 微信公众号appid |
-| redirect_uri | 是 | 授权成功后的回跳url,  请使用 urlEncode 对链接进行处理 |
-| response_type | 是 | 写死"code" |
-| scope | 是 | 写死"snsapi_userinfo" |
-| state | 否 | 重定向后会带上state参数，开发者可以填写a-zA-Z0-9的参数值，最多128字节 |
-
-> 由于授权操作安全等级较高，所以在发起授权请求时，微信会对授权链接做正则强匹配校验，如果链接的参数顺序不对，授权页面将无法正常访问
-
-用户同意授权后
-如果用户同意授权，页面将跳转至 `redirect_uri/?code=CODE&state=STATE`
 
 ## 1.1a 请求用户微信授权
 
@@ -60,50 +37,18 @@ https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=RED
 
 小程序请求授权后，可以拿到用户的nickname，在1.3里一起上报给工业云，换取工业云access token
 
-## 1.2 查询用户信息(h5用，废弃)
-
-请求方式GET
-
-```
-https://{CloudIndustryHost}/iam/api/v1/wx/get_user_info?code={code}
-```
-
-| 参数 | 必选 | 含义 |
-| -- | ---- | ---- |
-| code | 否 | 1.1中获取的微信授权码 |
-
-返回包体
-
-```json
-{
-    "Code": 0,
-    "Msg": "ok",
-    "OpenId": "open id",
-    "CorpId": "corp id",
-    "UserId": "user id",
-    "AccessToken": "access token"
-}
-```
-
-| 参数 | 必选 | 含义 |
-| ---- | --- | --- |
-| OpenId | 是 | 用户微信open id |
-| UserId | 是 | 工业云用户id |
-| CorpId | 是 | 工业云企业id |
-| AccessToken | 是 | 用户在工业云的access token |
-
 ## 1.2a 查询用户信息
 
 详见[小程序获取用户信息](https://developers.weixin.qq.com/miniprogram/dev/api/open-api/user-info/wx.getUserInfo.html)
 
-## 1.3 绑定手机和微信
+## 1.3 绑定手机、昵称，换取工业云登录态
 
 > 对防疫场景，仅需求方（医院侧）需要
 
 请求方式POST
 
 ```
-https://{CloudIndustryHost}/iam/api/v1/wx/bind_mobile
+https://{CloudIndustryHost}/iam/api/v1/wx/bind_user
 ```
 
 请求Header
@@ -116,8 +61,7 @@ Cookie: sessionid=asfwefbqwbfwqef;
 
 ```json
 {
-    "OpenId": "open id",
-    "Mobile": "13700000000",
+    "EncrptedMobile": "asdfbwuefaoefn",
     "NickName": "张三"
 }
 ```
@@ -125,7 +69,7 @@ Cookie: sessionid=asfwefbqwbfwqef;
 | 参数名称 | 必选  | 描述 |
 | --- | --- | --- |
 | OpenId | 是 | 微信OpenId |
-| Mobile | 是 | 手机号 |
+| EncrptedMobile | 是 | 加密手机号 |
 | NickName | 是 | 昵称 |
 
 返回包体
