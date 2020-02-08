@@ -23,7 +23,9 @@ http://{CloudIndustryHost}/iam/api/v1/user/{userid}?access_token=ACCESS_TOKEN
     "Roles": [
         {
             "CorpId": "corpid1", 
-            "Role": "admin"
+            "Role": "admin",
+            "CorpStatus": 2,
+            "CorpType": 3,
         }...
     ],
     "UserRole": 0, 
@@ -43,6 +45,8 @@ http://{CloudIndustryHost}/iam/api/v1/user/{userid}?access_token=ACCESS_TOKEN
 | Roles | array | 用户企业角色列表（用户可能属于多个企业） |
 | CorpId | string | 企业 id |
 | Role | int | 用户在企业里的角色：1: 企业管理员，0: 企业普通用户 |
+| CorpStatus | int | 企业状态：1:审核中 2:审核通过 3:审核驳回 |
+| CorpType | int | 企业类型: 1:普通企业 2:服务提供商 3:医院 |
 | UserRole | int | 0普通用户 10管理员（运营商或超级管理员) |
 | CreateType | int | 1:自注册用户 2:企业管理员注册用户 3:微信登录注册用户 10:系统创建用户 |
 | SubAccount | bool | true:是子账号 false:非子账号 |
