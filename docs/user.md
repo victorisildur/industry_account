@@ -27,6 +27,8 @@ http://{CloudIndustryHost}/iam/api/v1/user/{userid}?access_token=ACCESS_TOKEN
         }...
     ],
     "UserRole": 0, 
+    "CreateType": 1,
+    "SubAccount": false
 }
 ```
 
@@ -42,6 +44,8 @@ http://{CloudIndustryHost}/iam/api/v1/user/{userid}?access_token=ACCESS_TOKEN
 | CorpId | string | 企业 id |
 | Role | int | 用户在企业里的角色：1: 企业管理员，0: 企业普通用户 |
 | UserRole | int | 0普通用户 10管理员（运营商或超级管理员) |
+| CreateType | int | 1:自注册用户 2:企业管理员注册用户 3:微信登录注册用户 10:系统创建用户 |
+| SubAccount | bool | true:是子账号 false:非子账号 |
 
 ## 获取用户详情列表
 

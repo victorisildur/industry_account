@@ -43,6 +43,7 @@ Set-Cookie: sessionid=wedfapehfawefjae;
 
 ## 1.3 绑定手机、昵称，换取工业云登录态
 
+> 对防疫场景，仅需求方（医院侧）需要
 
 请求方式POST
 
@@ -61,16 +62,15 @@ Cookie: sessionid=asfwefbqwbfwqef;
 ```json
 {
     "EncrptedMobile": "asdfbwuefaoefn",
-    "NickName": "张三",
-    "Iv": "sfasefhapeifja"
+    "NickName": "张三"
 }
 ```
 
 | 参数名称 | 必选  | 描述 |
 | --- | --- | --- |
-| NickName | 是 | 昵称 |
+| OpenId | 是 | 微信OpenId |
 | EncrptedMobile | 是 | 加密手机号 |
-| Iv | 是 | 加密算法初始向量，详见[小程序获取手机号](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html)的返回 |
+| NickName | 是 | 昵称 |
 
 返回包体
 
@@ -88,6 +88,7 @@ Cookie: sessionid=asfwefbqwbfwqef;
 | ---- | --- | --- |
 | Code | 是 | 0: 成功, 非0: 失败 |
 |  UserId | 是 | 手机号对应的工业云user id|
+|  CorpId | 是 | 手机号对应的工业云corp id|
 |  AccessToken | 是 | 手机号对应的工业云access token|
 
 > 异常情况：该手机号未在工业云注册过，则需前端提示医院侧前往sidacloud.com进行注册、需求发布
@@ -692,7 +693,19 @@ https://{CloudIndustryHost}/asm/api/colla_released_demands?access_token={token}
 	
 2. 查询分类ID为2的需求
 
-		http://host:port/api/colla_released_demands?CommonParams={"Filters":[{"category_id":"state","op":"==","values":["2"]}]}
+		http://host:port/api/colla_released_demands?CommonParams={"Filters":[{"name":"category_id","op":"==","values":["2"]}]}
+3. 查询分类ID为2，根据创建时间倒序排列，分页从0开始获取10项
+
+    ```
+    http://host:port/api/colla_released_demands?CommonParams={"Sorts":[{"name":"created_at","OrderBy":"desc"}],"Filters":[{"name":"category_id","op":"==","values":["2"]}],"Limit":10,"Offset":0}
+
+    参数说明：
+    "Sorts":[{"name":"created_at","OrderBy":"desc"}]为排序条件
+    "Filters":[{"name":"category_id","op":"==","values":["2"]}]为过滤条件，按分类等于2来过滤
+    "Limit":10,"Offset":0 为分页条件，Offset为起始位置，Limit为分页数量
+    ```
+
+    
 	
 返回包体示例
 
