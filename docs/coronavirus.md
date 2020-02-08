@@ -607,6 +607,8 @@ type Filter struct {
                     "Description": "测试"
                 }
             ],
+            "Logo": "logourl",
+            "Standard": "国药甲1",
             "Location": "杭州",
             "Description": "详细说明(富文本)",
             "HeadUserIDList": [1,2],
@@ -725,6 +727,8 @@ https://{CloudIndustryHost}/asm/api/colla_released_demands?access_token={token}
                 }
             ],
             "Location": "杭州",
+            "Logo": "logourl",
+            "Standard": "国药甲1",
             "Description": "详细说明(富文本)",
             "Anonymous": false,
             "State": 3,
