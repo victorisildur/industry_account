@@ -696,15 +696,12 @@ https://{CloudIndustryHost}/asm/api/colla_released_demands?access_token={token}
 		http://host:port/api/colla_released_demands?CommonParams={"Filters":[{"name":"category_id","op":"==","values":["2"]}]}
 3. 查询分类ID为2，根据创建时间倒序排列，分页从0开始获取10项
 
-    ```
-    http://host:port/api/colla_released_demands?CommonParams={"Sorts":[{"name":"created_at","OrderBy":"desc"}],"Filters":[{"name":"category_id","op":"==","values":["2"]}],"Limit":10,"Offset":0}
+        http://host:port/api/colla_released_demands?CommonParams={"Sorts":[{"name":"created_at","OrderBy":"desc"}],"Filters":[{"name":"category_id","op":"==","values":["2"]}],"Limit":10,"Offset":0}
 
-    参数说明：
-    "Sorts":[{"name":"created_at","OrderBy":"desc"}]为排序条件
-    "Filters":[{"name":"category_id","op":"==","values":["2"]}]为过滤条件，按分类等于2来过滤
-    "Limit":10,"Offset":0 为分页条件，Offset为起始位置，Limit为分页数量
-    ```
-
+        参数说明：
+        "Sorts":[{"name":"created_at","OrderBy":"desc"}]为排序条件
+        "Filters":[{"name":"category_id","op":"==","values":["2"]}]为过滤条件，按分类等于2来过滤
+        "Limit":10,"Offset":0 为分页条件，Offset为起始位置，Limit为分页数量
     
 	
 返回包体示例
