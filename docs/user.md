@@ -25,7 +25,7 @@ http://{CloudIndustryHost}/iam/api/v1/user/{userid}?access_token=ACCESS_TOKEN
             "CorpId": "corpid1", 
             "Role": "admin",
             "CorpStatus": 2,
-            "CorpType": 3,
+            "CorpType": 3
         }...
     ],
     "UserRole": 0, 
