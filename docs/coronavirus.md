@@ -215,7 +215,7 @@ https://{CloudIndustryHost}/asm/api/supply?access_token={access token}
 请求方式POST
 
 ```
-/api/bid_list?access_token={access_token}
+https://{CloudIndustryHost}/asm/api/bid_list?access_token={access_token}
 ```
 
 请求包体
