@@ -7,7 +7,7 @@
 请求方式POST
 
 ```
-https://{CloudIndustryHost}/iam/api/v1/wx/login
+https://{CloudIndustryHost}/qywx/wx/login
 ```
 
 请求包体
@@ -48,7 +48,7 @@ Set-Cookie: sessionid=wedfapehfawefjae;
 请求方式POST
 
 ```
-https://{CloudIndustryHost}/iam/api/v1/wx/bind_user
+https://{CloudIndustryHost}/qywx/wx/bind_user
 ```
 
 请求Header
@@ -62,15 +62,16 @@ Cookie: sessionid=asfwefbqwbfwqef;
 ```json
 {
     "EncrptedMobile": "asdfbwuefaoefn",
-    "NickName": "张三"
+    "NickName": "张三",
+    "Iv": "asdfaefaef"
 }
 ```
 
 | 参数名称 | 必选  | 描述 |
 | --- | --- | --- |
-| OpenId | 是 | 微信OpenId |
 | EncrptedMobile | 是 | 加密手机号 |
 | NickName | 是 | 昵称 |
+| Iv | 是 | 加密初始向量 |
 
 返回包体
 
@@ -88,7 +89,6 @@ Cookie: sessionid=asfwefbqwbfwqef;
 | ---- | --- | --- |
 | Code | 是 | 0: 成功, 非0: 失败 |
 |  UserId | 是 | 手机号对应的工业云user id|
-|  CorpId | 是 | 手机号对应的工业云corp id|
 |  AccessToken | 是 | 手机号对应的工业云access token|
 
 > 异常情况：该手机号未在工业云注册过，则需前端提示医院侧前往sidacloud.com进行注册、需求发布
@@ -98,7 +98,7 @@ Cookie: sessionid=asfwefbqwbfwqef;
 请求方式GET
 
 ```
-http://{CloudIndustryHost}/iam/api/v1/wx/token
+http://{CloudIndustryHost}/qywx/wx/token
 ```
 
 请求Header
@@ -209,129 +209,8 @@ https://{CloudIndustryHost}/asm/api/supply?access_token={access token}
 }
 ```
 
-## 2.3 个人/企业投标列表
 
-请求方式 Post
-
-```
-https://{CloudIndustryHost}/asm/api/bid_list/:corp_id/:bid_state?access_token={access_token}//corp_id 服务商对应的企业id; bid_state 投标状态
-```
-
-| 参数名 | 是否必填 | 说明 |
-| ------ | ------ | ------ |
-| corp_id | 是 | 服务商对应的企业id |
-| bid_state | 是 | 投标状态 |
-| Filters | 是 | 需求过滤条件 |
-| BidFilters | 是 | 投标过滤条件 |
-| Sorts | 否 | 排序条件 |
-| PageSize | 否 | 分页查找一次获取的数量 |
-| Offset | 否 | 分页查找起始位置 |
-
-说明：由于需要查询需求信息，Filters和Sorts中Name字段对应的是需求信息的Name字段（见协同制造cgi文档）
-
-bid_state状态说明
-
-| 枚举值  | 名称 | 说明 |
-| ------ | ------ | ------ |
-| 0 | 全部 | 所有投标信息 |
-| 1 | 已投标 | 服务商发起投标，此时会生成一条投标信息 |
-| 2 | 已过期 | 需求过期后，会通知投标信息，并把投标状态更新为已过期 |
-| 3 | 已下架 | 需求下架后，会通知投标信息，并把投标状态更新为已下架 |
-| 4 | 已中标 | 需求发布者接标后，投标状态会更新为已中标，该需求对应的其他投标信息会更新为未中标 |
-| 5 | 未中标 | 需求发布者接标后，投标状态会更新为已中标，该需求对应的其他投标信息会更新为未中标 |
-| 6 | 已评分 | 需求方与服务商互评后，投标状态更新为已评分 |
-| 7 | 优秀案例 | 服务商申请优秀案例，平台审核后会通知投标信息，并把投标状态更新为优秀案例（预留） |
-| 8 | 取消投标 | 服务商取消投标，投标状态更新为已取消（预留） |
-
-请求包体
-
-```
-body={
-         "Filters": [//需求过滤条件
-             {
-                 "Name": "category_id",//分类id
-                 "Op": "in",
-                 "Values": [
-                     "1"
-                 ]
-             }
-         ],
-                  "BidFilters": [//投标过滤条件
-
-         ],
-         "Sorts": [//排序
-             {
-             	"Name": "bidding_deadline",//排序字段
-             	"OrderBy": "desc"//默认asc生序，desc降序
-             }
-         ],
-         "PageSize": 10,
-     	 "Offset": 4
-     }
-```
-
-返回包体
-
-```
-{
-    "Code": 0,
-    "Msg": "成功",
-    "Total": 1,
-    "Infos": [
-        {
-            "DemandInfo": {
-                "ID": "12",
-                "Name": "火灾识别9",
-                "CategoryID": 1,
-                "CategoryName": "最大分类",
-                "Budget": {
-                    "type": 1,
-                    "min": 123,
-                    "max": 1234
-                },
-                "Locations": "as",
-                "Description": "瑶瑶详细说明(富文本)代发货的看法",
-                "AppendixList": [
-                    {
-                        "name": "AAA",
-                        "url": "http://asas"
-                    }
-                ],
-                "Bidding": {
-                    "RecvObject": "csacdc",
-                    "RecvLocation": "location",
-                    "CompletionDate": 1648315396,
-                    "BiddingDeadline": 1648315396
-                },
-                "Mobile": "12311002299",
-                "Anonymous": false,
-                "State": 2,
-                "CorpID": 0,
-                "CorpName": "",
-                "DemandRating": 0,
-                "BidCount": 0,
-                "ReleaseTime": "15510869467158" // 需求发布时间
-            },
-            "ExtraInfo": {
-                "BidId": "15507208663542",
-                "BidState": 4,
-                "BidTime": "15510869467158" // 投标时间
-            }
-        }
-    ]
-}
-```
-
-| 参数名 | 基础字段 | 说明 |
-| ------ | ------ | ------ |
-| Code | 是 | 错误码 |
-| Msg | 是 | 错误说明 |
-| Infos | 否 | 需求信息列表 |
-| Total | 是 | 符合条件的总数量，分页的时候可能用来判断是否有更多 |
-| DemandInfo | 否 | 需求详细信息，具体字段见协同制造cgi文档 |
-| ExtraInfo | 否 | 投标部分信息 |
-
-## 2.4 读已投标列表
+## 2.4 读投标列表
 
 请求方式POST
 
@@ -453,16 +332,17 @@ body={
 }
 ```
 
-| 参数名 | 基础字段 | 说明 |
-| ------ | ------ | ------ |
-| Code | 是 | 错误码 |
-| Msg | 是 | 错误说明 |
-| Infos | 否 | 需求列表 |
-| Total | 是 | 符合条件的总数量，分页的时候可能用来判断是否有更多 |
-| Guarantee | 企业保障认证信息 |  |
-|     RealNameAuthStatus | int | 企业实名认证状态 1 审核中 2 审核通过 3 审核拒绝 |
-|     OfflineCertStatus | int | 申请线下认证状态 1 审核中 2 审核通过 3 审核拒绝 |
-|     EarnestMoneyStatus | int | 申请缴纳保证金状态 1 审核中 2 审核通过 3 审核拒绝 |
+| 参数名 | 基础字段 | 说明 | 类型 |
+| ------ | ------ | ------ | --- |
+| Code | 是 | 错误码 | int |
+| Msg | 是 | 错误说明 | string |
+| Infos | 否 | 需求列表 | array of object |
+| Total | 是 | 符合条件的总数量，分页的时候可能用来判断是否有更多 | int |
+| BidId | 是 | 投标id | string |
+| DemandId | 是 | 需求id | string |
+| ServiceCorpName | 是 | 投标商企业名 | string |
+| ServicePrice | 是 | 投标单价，单位元 | float |
+
 
 
 # 3.需求撮合
@@ -688,12 +568,20 @@ type Filter struct {
 }
 ```
 
-| 参数名 | 基础字段 | 说明 |
-| ------ | ------ | ------ |
-| Code | 是 | 错误码 |
-| Msg | 是 | 错误说明 |
-| DemandList | 是 | 需求列表 |
-| Count | 是 | 符合条件的总数量，分页的时候可能用来判断是否有更多 |
+| 参数名 | 基础字段 | 说明 | 类型 |
+| ------ | ------ | ------ | --- |
+| Code | 是 | 错误码 | int |
+| Msg | 是 | 错误说明 | string |
+| DemandList | 是 | 需求列表 | object array |
+| Count | 是 | 符合条件的总数量，分页的时候可能用来判断是否有更多 | int |
+| CategoryIDList | 是 | 需求所属分类id | int array |
+| Logo | 否 | 需求logo | string |
+| Standard | 否 | 物资标准 | string |
+| Description | 是 | 需求描述 | string |
+| CorpName | 是 | 需求发布方企业名 | string |
+| CreateTime | 是  | 需求创建时间 | int |
+| ViewsCount | 是 | 浏览量 | int |
+
 
 ## 3.3 查询已发布的需求(列表)详情
 
