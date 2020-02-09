@@ -244,6 +244,54 @@ https://{CloudIndustryHost}/asm/api/supply?access_token={access token}
 }
 ```
 
+取个人端/企业端消息
+
+根据个人/企业的企业id获取供货的列表
+
+```json
+{
+    "Filters": [
+        {
+            "Name": "service_corp_id",
+            "Op": "==",
+            "Values": ["4332237717172222"] //个人/企业的企业id，从用户信息接口处获取
+        }
+    ],
+    "Sorts": [
+        {
+            "Name": "created_at", //根据供货创建时间倒序排列
+            "OrderBy": "desc"
+        }
+    ],
+    "PageSize": 10,
+    "Offset": 0
+}
+```
+
+取医院端企业需求
+
+先通过`3.3 查询已发布的需求(列表)详情`获取医院发布的所有实物需求列表（需求选择所需），选择一个需求获取需求的已投标列表（参数见下）
+
+```json
+{
+    "Filters": [
+        {
+            "Name": "demand_id",
+            "Op": "==",
+            "Values": ["130"]  //需求id
+        }
+    ],
+    "Sorts": [
+        {
+            "Name": "created_at", //根据供货创建时间倒序排列
+            "OrderBy": "desc"
+        }
+    ],
+    "PageSize": 10,
+    "Offset": 0
+}
+```
+
 | 参数名 | 是否必填 | 说明 | 类型 |
 | ------ | ------ | ------ | --- |
 | Filters | 否 | 过滤条件(如果是sp)，可以为空，如果是cp不能为空 | object array |
@@ -311,11 +359,12 @@ https://{CloudIndustryHost}/asm/api/supply?access_token={access token}
             "CreatedAt": "1550720866",
             "BidId": "15507208663542",
             "DemandId": "12341",
+            "DemandName": "20万瓶消毒液",
             "DemandRating": 5,
             "ServiceCorpId": "133334",
             "ServiceCorpName": "xxx",
             "ServiceCorpLogo": "xxx", // 服务商logo
-            "ServicePrice": 23.3,
+            "ServicePrice": 2330, //除100后是价格
             "ServicePeriod": 30,
             "ServicePeriodUint": 1,
             "ServiceDescription": "投标了",
@@ -326,7 +375,11 @@ https://{CloudIndustryHost}/asm/api/supply?access_token={access token}
 	            "RealNameAuthStatus": 2,
 	            "OfflineCertStatus": 0,
 	            "EarnestMoneyStatus": 0
-	        },
+            },
+            "ServicePhoneNum": "13512340987",
+            "ServiceContactUser": "供货人",
+            "ServiceContactUserId": "45223843256526161",
+            "ServiceContactEmail": "xxx@126.com"
         },
     ]
 }
@@ -343,6 +396,18 @@ https://{CloudIndustryHost}/asm/api/supply?access_token={access token}
 | ServiceCorpName | 是 | 投标商企业名 | string |
 | ServicePrice | 是 | 投标单价，单位元 | float |
 
+
+设计交互与字段对应关系
+
+| 交互字段 | 对应字段 |
+|:--- |:--- |
+| 供货需求 | DemandName |
+| 提交时间 | CreatedAt |
+| 企业名称 | ServiceCorpName |
+| 现货数量 | ServicePeriod |
+| 现货单价 | ServicePrice |
+| 联系人 | ServiceContactUser|
+| 手机号码 | ServicePhoneNum |
 
 
 # 3.需求撮合
