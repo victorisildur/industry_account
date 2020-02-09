@@ -707,6 +707,7 @@ https://{CloudIndustryHost}/asm/api/colla_released_demands?access_token={token}
             "Logo": "logourl",
             "Standard": "国药甲1",
             "Description": "详细说明(富文本)",
+            "RequiredCount": "20000个",
             "Anonymous": false,
             "State": 3,
             "CorpID": 0,
@@ -751,6 +752,20 @@ https://{CloudIndustryHost}/asm/api/colla_released_demands?access_token={token}
 | Msg | 是 | 错误说明 |
 | DemandList | 是 | 需求列表 |
 | Count | 是 | 符合条件的总数量，分页的时候可能用来判断是否有更多 |
+
+设计交互字段与字段对应关系
+
+| 交互字段 | 对应字段 |
+|:--- |:--- |
+| 产品名称 | DemandList.Name |
+| 产品说明 | DemandList.Description |
+| 数量 | DemandList.RequiredCount |
+| 标准类型 | DemandList.Standard |
+| 图片示例 | DemandList.Logo |
+| 创建时间 | DemandList.CreateTime |
+| 到期时间 | DemandList.Bidding.BiddingDeadline |
+| 浏览数量 | DemandList.ViewsCount |
+| 参与人数 | DemandList.BidCount |
 
 # 4. 留言板模块
 > 评论回复相关接口
