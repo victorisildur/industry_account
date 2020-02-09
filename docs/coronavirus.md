@@ -93,6 +93,30 @@ Cookie: sessionid=asfwefbqwbfwqef;
 
 > 异常情况：该手机号未在工业云注册过，则需前端提示医院侧前往sidacloud.com进行注册、需求发布
 
+## 1.4 换取会话中的工业云登录态
+
+请求方式GET
+
+```
+http://{CloudIndustryHost}/iam/api/v1/wx/token
+```
+
+请求Header
+
+```
+Cookie: sessionid=asfaefaef;
+```
+
+返回包体
+
+```json
+{
+    "Code": 0,
+    "AccessToken": "token",
+    "UserId": "userid"
+}
+```
+
 # 2. 我要供货场景
 
 ## 2.1 读企业信息
