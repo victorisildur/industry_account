@@ -552,11 +552,11 @@ type Filter struct {
 
 1. 查询指定ID为1和10的需求
 
-		http://host:port/api/colla_demands?DemandIDs=[1,10]
+		https://{CloudIndustryHost}/asm/api/colla_demands?DemandIDs=[1,10]
 	
 2. 查询企业ID为1创建的需求
 
-		http://host:port/api/colla_demands?CorpID=1
+		https://{CloudIndustryHost}/asm/api/colla_demands?CorpID=1
 	
 返回包体示例
 
