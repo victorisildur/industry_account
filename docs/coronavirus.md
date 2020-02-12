@@ -255,6 +255,13 @@ https://{CloudIndustryHost}/asm/api/bid_list?access_token={access_token}
             "Name": "service_corp_id",
             "Op": "==",
             "Values": ["4332237717172222"] //个人/企业的企业id，从用户信息接口处获取
+        },
+        {
+            "name": "demand_type",
+            "op": "==",
+            "values": [
+                "realobject"
+            ]
         }
     ],
     "Sorts": [
@@ -279,6 +286,13 @@ https://{CloudIndustryHost}/asm/api/bid_list?access_token={access_token}
             "Name": "demand_id",
             "Op": "==",
             "Values": ["130"]  //需求id
+        },
+        {
+            "name": "demand_type",
+            "op": "==",
+            "values": [
+                "realobject"
+            ]
         }
     ],
     "Sorts": [
@@ -668,20 +682,48 @@ https://{CloudIndustryHost}/asm/api/colla_released_demands?access_token={token}
 
 1. 查询指定ID为1和10的需求（如果指定id不属于已发布或者竞标中状态，不会返回结果）
 		
-		http://host:port/api/colla_released_demands?CommonParams={"Filters":[{"name":"id","op":"in","values":["1","10"]}]}
+```
+    http://host:port/api/colla_released_demands?CommonParams={"Filters":[{"name":"id","op":"in","values":["1","10"]}]}
+```
 	
 2. 查询分类ID为2的需求
 
-		http://host:port/api/colla_released_demands?CommonParams={"Filters":[{"name":"category_id","op":"==","values":["2"]}]}
-3. 查询分类ID为2，根据创建时间倒序排列，分页从0开始获取10项
+```
+    http://host:port/api/colla_released_demands?CommonParams={"Filters":[{"name":"category_id","op":"==","values":["2"]}]}
+```
+
+3. 查询分类ID为2的实物需求，根据创建时间倒序排列，分页从0开始获取10项
 
 ```
-        http://host:port/api/colla_released_demands?CommonParams={"Sorts":[{"name":"created_at","OrderBy":"desc"}],"Filters":[{"name":"category_id","op":"==","values":["2"]}],"Limit":10,"Offset":0}
+    http://host:port/api/colla_released_demands?CommonParams={"Sorts":[{"name":"created_at","OrderBy":"desc"}],"Filters":[{"name":"category_id","op":"==","values":["2"]},{"name":"demand_type","op":"==","values":["realobject"]}],"Limit":10,"Offset":0}
 
-        参数说明：
-        "Sorts":[{"name":"created_at","OrderBy":"desc"}]为排序条件
-        "Filters":[{"name":"category_id","op":"==","values":["2"]}]为过滤条件，按分类等于2来过滤
-        "Limit":10,"Offset":0 为分页条件，Offset为起始位置，Limit为分页数量
+    参数说明：
+    Sorts: 排序条件
+    {"name":"created_at","OrderBy":"desc"} => 需求创建时间倒序排列
+
+    Fileters: 过滤条件
+    {"name":"category_id","op":"==","values":["2"]} => 需求分类为2的需求
+    {"name":"demand_type","op":"==","values":["realobject"]} => 过滤物资需求
+
+    分页条件:
+    "Limit":10,"Offset":0 => 为分页条件，Offset为起始位置，Limit为分页数量
+```
+
+4. 查询企业ID为423773857275512847的需求列表
+
+```
+    http://host:port/api/colla_released_demands?CommonParams={"Sorts":[{"name":"created_at","OrderBy":"desc"}],"Filters":[{"name":"corp_id","op":"==","values":["423773857275512847"]},{"name":"demand_type","op":"==","values":["realobject"]}],"Limit":10,"Offset":0}
+
+    参数说明：
+    Sorts: 排序条件
+    {"name":"created_at","OrderBy":"desc"} => 需求创建时间倒序排列
+
+    Fileters: 过滤条件
+    {"name":"corp_id","op":"==","values":["423773857275512847"]} => 需求创建者企业为423773857275512847的需求
+    {"name":"demand_type","op":"==","values":["realobject"]} => 过滤物资需求
+
+    分页条件:
+    "Limit":10,"Offset":0 => 为分页条件，Offset为起始位置，Limit为分页数量
 ```
     
 	
