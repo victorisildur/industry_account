@@ -195,7 +195,7 @@ https://{CloudIndustryHost}/asm/api/supply?access_token={access token}
 | Tel | 是  | 联系电话 |
 | DemandId | 是 | 需求id |
 | ServiceCorpId | 是 | 投标商企业id，无企业时填"0"，不能为空 |
-| ServicePrice | 是 | 服务报价（单位元）|
+| ServicePrice | 是 | 服务报价（单位分）|
 | ServiceNum | 是 | 数量 |
 
 返回包体
