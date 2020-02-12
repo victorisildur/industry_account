@@ -183,9 +183,8 @@ https://{CloudIndustryHost}/asm/api/supply?access_token={access token}
     "Tel": "13700000000",
     "DemandId": "xxx", //需求id
     "ServiceCorpId":"123", //投标商企业id
-    "ServicePrice":20.5, //服务报价（单位元）
-    "ServiceNum": 200000, //数量
-    "ServicePhoneNum":"18824909432"//投标商联系方式
+    "ServicePrice":20.5, //服务报价（单位分）
+    "ServiceNum": 200000 //数量
 }
 ```
 
@@ -195,10 +194,9 @@ https://{CloudIndustryHost}/asm/api/supply?access_token={access token}
 | Contact | 是 | 联系人姓名 |
 | Tel | 是  | 联系电话 |
 | DemandId | 是 | 需求id |
-| ServiceCorpId | 是 | 投标商企业id |
+| ServiceCorpId | 是 | 投标商企业id，无企业时填"0"，不能为空 |
 | ServicePrice | 是 | 服务报价（单位元）|
 | ServiceNum | 是 | 数量 |
-| ServicePhoneNum | 是 | 投标商联系方式 |
 
 返回包体
 
