@@ -178,25 +178,25 @@ https://{CloudIndustryHost}/asm/api/supply?access_token={access token}
 
 ```json
 {
-    "Name": "企业名称",
+    "CorpName": "企业名称",
     "Contact": "联系人名称",
     "Tel": "13700000000",
     "DemandId": "xxx", //需求id
-    "ServiceCorpId":"123", //投标商企业id
-    "ServicePrice":2005, //服务报价（单位分）
-    "ServiceNum": 200000 //数量
+    "CorpId":"123", //投标商企业id
+    "Price":2005, //服务报价（单位分）
+    "Count": 200000 //数量
 }
 ```
 
 | 参数名 | 是否必填 | 说明 |
 | ------ | ------ | ------ |
-| Name | 是 | 企业名称 |
+| CorpName | 是 | 企业名称 |
 | Contact | 是 | 联系人姓名 |
 | Tel | 是  | 联系电话 |
 | DemandId | 是 | 需求id |
-| ServiceCorpId | 是 | 投标商企业id，无企业时填"0"，不能为空 |
-| ServicePrice | 是 | 服务报价（单位分）|
-| ServiceNum | 是 | 数量 |
+| CorpId | 是 | 投标商企业id，无企业时填"0"，不能为空 |
+| Price | 是 | 服务报价（单位分）|
+| Count | 是 | 数量 |
 
 返回包体
 
@@ -710,7 +710,7 @@ https://{CloudIndustryHost}/asm/api/colla_released_demands?access_token={token}
 4. 查询企业ID为423773857275512847的需求列表
 
 ```
-    http://host:port/api/colla_released_demands?CommonParams={"Sorts":[{"name":"created_at","OrderBy":"desc"}],"Filters":[{"name":"corp_id","op":"==","values":["423773857275512847"]},{"name":"demand_type","op":"==","values":["realobject"]}],"Limit":10,"Offset":0}
+    http://host:port/api/colla_released_demands?CommonParams={"Sorts":[{"name":"created_at","OrderBy":"desc"}],"Filters":[{"name":"corp_id","op":"==","values":["428797081298143301"]},{"name":"demand_type","op":"==","values":["realobject"]}],"Limit":10,"Offset":0}
 
     参数说明：
     Sorts: 排序条件
