@@ -183,7 +183,7 @@ https://{CloudIndustryHost}/asm/api/supply?access_token={access token}
     "Tel": "13700000000",
     "DemandId": "xxx", //需求id
     "ServiceCorpId":"123", //投标商企业id
-    "ServicePrice":20.5, //服务报价（单位分）
+    "ServicePrice":2005, //服务报价（单位分）
     "ServiceNum": 200000 //数量
 }
 ```
