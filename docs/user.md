@@ -25,7 +25,8 @@ http://{CloudIndustryHost}/iam/api/v1/user/{userid}?access_token=ACCESS_TOKEN
             "CorpId": "corpid1", 
             "Role": "admin",
             "CorpStatus": 2,
-            "CorpType": 3
+            "CorpType": 3,
+            "CorpName": "企业名"
         }...
     ],
     "UserRole": 0, 
@@ -44,12 +45,16 @@ http://{CloudIndustryHost}/iam/api/v1/user/{userid}?access_token=ACCESS_TOKEN
 | Status | int | 用户状态. 0:账户未激活,1:账户已激活,2:账户认证中,3:账户认证通过,4:账户认证拒绝 |
 | Roles | array | 用户企业角色列表（用户可能属于多个企业） |
 | CorpId | string | 企业 id |
-| Role | int | 用户在企业里的角色：1: 企业管理员，0: 企业普通用户 |
-| CorpStatus | int | 企业状态：1:审核中 2:审核通过 3:审核驳回 |
-| CorpType | int | 企业类型: 1:普通企业 2:服务提供商 3:医院 |
-| UserRole | int | 0普通用户 10管理员（运营商或超级管理员) |
+| Role | int | 用户在企业里的角色：1:企业管理员，0:企业普通用户 |
+| CorpStatus | int | 企业状态：0:草稿 1:审核中 2:审核通过 3:审核驳回 |
+| CorpType | int | 企业类型: 1:普通企业 2:服务提供商 3:医院 10:内部企业 |
+| CorpName | string | 企业名称 |
+| UserRole | int | 0:普通用户 10:管理员（运营商或超级管理员) |
 | CreateType | int | 1:自注册用户 2:企业管理员注册用户 3:微信登录注册用户 10:系统创建用户 |
 | SubAccount | bool | true:是子账号 false:非子账号 |
+
+`注`：目前用户于企业是一对一的关系，Roles数组下只会有一项数据表示用户所属企业信息
+
 
 ## 获取用户详情列表
 
