@@ -105,20 +105,47 @@ CLIENT_SUBSCRIBE_URI
 
 ```
 {
-    "Topic": "corpChange",
     "ChangeList": [
         {
-            "CorpId": "corpid",
-            "UserCount": 5,
-            "Users" : [ "userid1" , "userid2" , "userid3" ...],
-            "Admins": [ "userid1", "userid2" ...]
-            "Name": "企业名称",
-            "Addr": "地址",
-            "Contacts": "张三"
+            "ChangeType": "add",
+            "CorpId": 431030167083746609,
+            "CorpInfo": {
+                "corp_contacts": "cjut",
+                "corp_name": "吃瓜群众",
+                "corp_site": "杭州西溪",
+                "corp_tel": "0571890101"
+            },
+            "CorpStatus": 1
+        },
+        {
+            "ChangeType": "modify",
+            "CorpId": 431030167083746609,
+            "CorpInfo": {
+                "corp_contacts": "cjut",
+                "corp_name": "吃瓜群众",
+                "corp_site": "杭州西溪",
+                "corp_tel": "0571890101"
+            },
+            "CorpStatus": 2
+        },
+        {
+            "ChangeType": "delete",
+            "CorpId": 431030167083746609,
         }
-    ]
+    ],
+    "Topic": "corpChange"
 }
 ```
+
+| 字段 | 说明 |
+|:--- |:--- |
+| ChangeType | 通知类型: add、modify、delete |
+| CorpId | 企业id |
+| corp_name | 企业名 |
+| corp_contacts | 企业联系人 |
+| corp_tel | 企业联系电话 |
+| corp_site | 企业地址 |
+| CorpStatus | 企业状态：0:未提交 1:审核中 2:审核通过 3:审核驳回 4:修改中|
 
 返回说明：
 
@@ -131,3 +158,28 @@ CLIENT_SUBSCRIBE_URI
 
 > 前置条件：应用为工业云内部应用，且已注册订阅URI
 
+
+## 创建企业(API3.0)
+> 为用户创建企业，注此接口创建的企业CorpStatus=0为未提交状态
+
+```
+Action: CreateOrUpdateCorp
+Request: 
+{
+    "CorpId": 0, //0表示新建，传入corpId表示更新(但只能更新CorpStatus==0的企业)
+    "AdminUserId": userId, //创建企业的用户Id
+    "Name": "企业名称",
+    "Logo": "企业logo", //可为空
+    "Email": "企业邮箱",
+    "Tel": "企业电话",
+    "Addr": "企业地址",
+    "Type": "企业类型", //0:普通企业 1:服务提供商
+    "Contact": "企业联系人"
+}
+Response:
+{
+    "Code": 0, //错误码
+    "Msg": "",
+    "CorpId": corpId //企业id
+}
+```
