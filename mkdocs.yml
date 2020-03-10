@@ -12,8 +12,8 @@ nav:
   - 快速入门: get_started.md
 extra:
   palette:
-    primary: 'cyan'
-    accent: 'purple'
+    primary: "cyan"
+    accent: "purple"
 extra_javascript:
   # - https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js
   # - https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js
@@ -28,11 +28,11 @@ extra_javascript:
   - js/umlconvert.js
 markdown_extensions:
   # - pymdownx.superfences
-  
+
   - toc:
-        permalink: True
-        baselevel: 2
-        separator: "_"
+      permalink: True
+      baselevel: 2
+      separator: "_"
   - smarty
   - pymdownx.arithmatex
   - pymdownx.betterem:
@@ -40,21 +40,21 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.details
-  # - pymdownx.emoji:
-      # emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
   - pymdownx.inlinehilite
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
   - pymdownx.superfences:
-      custom_fences: [
-            {name: flow, class: uml-flowchart}
-           ,{name: sequence, class: uml-sequence-diagram}
-           ,{name: mermaid, class: uml-mermaid}
-      ]
+      custom_fences:
+        [
+          { name: flow, class: uml-flowchart },
+          { name: sequence, class: uml-sequence-diagram },
+          { name: mermaid, class: uml-mermaid },
+        ]
   # - pymdownx.tasklist:
   #     custom_checkbox: true
   # - pymdownx.tilde
 plugins:
   - search
-
