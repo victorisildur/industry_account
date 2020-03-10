@@ -163,7 +163,7 @@ CLIENT_SUBSCRIBE_URI
 > 为用户创建企业，注此接口创建的企业CorpStatus=0为未提交状态
 
 ```
-Action: CreateOrUpdateCorp
+Action: CreateOrUpdateDraftCorp
 Request: 
 {
     "CorpId": 0, //0表示新建，传入corpId表示更新(但只能更新CorpStatus==0的企业)
