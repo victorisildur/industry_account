@@ -26,43 +26,39 @@
     "KvParams": [
         {
             "Key": "UserName",
-            "Value": "xliang"
+            "Value": "姓名"
         },
         {
             "Key": "CorpName",
-            "Value": "molo555"
-        },
-        {
-            "Key": "CorpAdmin",
-            "Value": "xliang"
+            "Value": "企业名"
         },
         {
             "Key": "Product",
-            "Value": "ProudThink 普奥"
+            "Value": "产品名"
         },
         {
             "Key": "Version",
-            "Value": "v1.0"
+            "Value": "产品版本"
         },
         {
             "Key": "Operation",
-            "Value": "续费"
+            "Value": "操作"
         },
         {
             "Key": "OrderId",
-            "Value": "470106675538299985"
+            "Value": "订单id"
         },
         {
             "Key": "Contact",
-            "Value": "xliang"
+            "Value": "联系人"
         },
         {
             "Key": "Tel",
-            "Value": "15967122585"
+            "Value": "联系人手机"
         },
         {
             "Key": "Email",
-            "Value": "lxq520064@126.com"
+            "Value": "联系人邮箱"
         }
     ],
     "TemplateParams": null
