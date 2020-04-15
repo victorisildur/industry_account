@@ -218,7 +218,17 @@ Authorization xyz
 
 ## 查询寄云用户是否可删除或修改角色
 
-接口: http://10.1.1.19/api/SubscribeUser
+接口: http://10.1.1.19/api/DeleteUser
+
+方法: POST
+
+请求包
+
+```
+{
+    "uid":468295199546673520
+}
+```
 
 注: 10.1.1.19为寄云ip，此接口4.1.2-hotfix后改为同步接口
 
